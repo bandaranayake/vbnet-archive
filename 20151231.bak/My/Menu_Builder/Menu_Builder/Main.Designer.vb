@@ -28,10 +28,8 @@ Partial Class Main
         Me.LocXY = New System.Windows.Forms.ToolStripStatusLabel()
         Me.dvd1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ControlSize = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.dvd2 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ControlsAvailable = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.dvd3 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.CntrlAdded_Selected = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.SelectedControl = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -57,7 +55,6 @@ Partial Class Main
         Me.StatusBarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.JToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArrangeWindowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -87,37 +84,19 @@ Partial Class Main
         Me.ToolLabel = New System.Windows.Forms.ToolStripButton()
         Me.ToolLinkLabel = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
-        Me.btnMultiAdd = New System.Windows.Forms.ToolStripButton()
         Me.ControlNameFind = New System.Windows.Forms.Timer(Me.components)
         Me.PropertiesBox = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.PanelArrange = New System.Windows.Forms.Panel()
-        Me.btnArrangeThem = New System.Windows.Forms.Button()
-        Me.btnCntrlReload = New System.Windows.Forms.Button()
-        Me.lblMainCntrl = New System.Windows.Forms.Label()
-        Me.CbxMainCntrl = New System.Windows.Forms.ComboBox()
-        Me.lblspecified = New System.Windows.Forms.Label()
-        Me.lblAll = New System.Windows.Forms.Label()
-        Me.btnRemoveAll = New System.Windows.Forms.Button()
-        Me.btnRemove = New System.Windows.Forms.Button()
-        Me.btnAddAll = New System.Windows.Forms.Button()
-        Me.btnAdd = New System.Windows.Forms.Button()
-        Me.ListSpecified = New System.Windows.Forms.ListBox()
-        Me.RadioButtonv = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonh = New System.Windows.Forms.RadioButton()
-        Me.ListAll = New System.Windows.Forms.ListBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
         Me.ToolBar.SuspendLayout()
         Me.WinKeeper.SuspendLayout()
         Me.ToolBox.SuspendLayout()
-        Me.PropertiesBox.SuspendLayout()
-        Me.PanelArrange.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip
         '
-        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LocXY, Me.dvd1, Me.ControlSize, Me.dvd2, Me.ControlsAvailable, Me.dvd3, Me.CntrlAdded_Selected})
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LocXY, Me.dvd1, Me.ControlSize, Me.ToolStripStatusLabel1, Me.SelectedControl})
         Me.StatusStrip.Location = New System.Drawing.Point(0, 690)
         Me.StatusStrip.Name = "StatusStrip"
         Me.StatusStrip.Size = New System.Drawing.Size(984, 22)
@@ -142,30 +121,17 @@ Partial Class Main
         Me.ControlSize.Name = "ControlSize"
         Me.ControlSize.Size = New System.Drawing.Size(140, 17)
         '
-        'dvd2
+        'ToolStripStatusLabel1
         '
-        Me.dvd2.Name = "dvd2"
-        Me.dvd2.Size = New System.Drawing.Size(22, 17)
-        Me.dvd2.Text = "  |  "
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(22, 17)
+        Me.ToolStripStatusLabel1.Text = "  |  "
         '
-        'ControlsAvailable
+        'SelectedControl
         '
-        Me.ControlsAvailable.AutoSize = False
-        Me.ControlsAvailable.Name = "ControlsAvailable"
-        Me.ControlsAvailable.Size = New System.Drawing.Size(210, 17)
-        '
-        'dvd3
-        '
-        Me.dvd3.Name = "dvd3"
-        Me.dvd3.Size = New System.Drawing.Size(22, 17)
-        Me.dvd3.Text = "  |  "
-        '
-        'CntrlAdded_Selected
-        '
-        Me.CntrlAdded_Selected.Image = CType(resources.GetObject("CntrlAdded_Selected.Image"), System.Drawing.Image)
-        Me.CntrlAdded_Selected.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.CntrlAdded_Selected.Name = "CntrlAdded_Selected"
-        Me.CntrlAdded_Selected.Size = New System.Drawing.Size(29, 20)
+        Me.SelectedControl.Name = "SelectedControl"
+        Me.SelectedControl.Size = New System.Drawing.Size(56, 17)
+        Me.SelectedControl.Text = "#######"
         '
         'MenuStrip
         '
@@ -342,7 +308,7 @@ Partial Class Main
         '
         'ToolsMenu
         '
-        Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsToolStripMenuItem, Me.JToolStripMenuItem})
+        Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsToolStripMenuItem})
         Me.ToolsMenu.Name = "ToolsMenu"
         Me.ToolsMenu.Size = New System.Drawing.Size(48, 20)
         Me.ToolsMenu.Text = "&Tools"
@@ -350,15 +316,8 @@ Partial Class Main
         'OptionsToolStripMenuItem
         '
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OptionsToolStripMenuItem.Text = "&Options"
-        '
-        'JToolStripMenuItem
-        '
-        Me.JToolStripMenuItem.CheckOnClick = True
-        Me.JToolStripMenuItem.Name = "JToolStripMenuItem"
-        Me.JToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
-        Me.JToolStripMenuItem.Text = "j"
         '
         'WindowsToolStripMenuItem
         '
@@ -547,9 +506,9 @@ Partial Class Main
         Me.ToolBox.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ToolBox.Dock = System.Windows.Forms.DockStyle.Right
         Me.ToolBox.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolBox.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolButton, Me.ToolLabel, Me.ToolLinkLabel, Me.ToolStripSeparator9, Me.btnMultiAdd})
+        Me.ToolBox.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolButton, Me.ToolLabel, Me.ToolLinkLabel, Me.ToolStripSeparator9})
         Me.ToolBox.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.ToolBox.Location = New System.Drawing.Point(702, 48)
+        Me.ToolBox.Location = New System.Drawing.Point(561, 48)
         Me.ToolBox.Name = "ToolBox"
         Me.ToolBox.Size = New System.Drawing.Size(98, 642)
         Me.ToolBox.TabIndex = 23
@@ -584,206 +543,37 @@ Partial Class Main
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
         Me.ToolStripSeparator9.Size = New System.Drawing.Size(96, 6)
         '
-        'btnMultiAdd
-        '
-        Me.btnMultiAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.btnMultiAdd.Image = CType(resources.GetObject("btnMultiAdd.Image"), System.Drawing.Image)
-        Me.btnMultiAdd.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnMultiAdd.Name = "btnMultiAdd"
-        Me.btnMultiAdd.Size = New System.Drawing.Size(96, 19)
-        Me.btnMultiAdd.Text = "Multi add-False"
-        '
         'ControlNameFind
         '
         Me.ControlNameFind.Enabled = True
-        Me.ControlNameFind.Interval = 1500
+        Me.ControlNameFind.Interval = 1000
         '
         'PropertiesBox
         '
         Me.PropertiesBox.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.PropertiesBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PropertiesBox.Controls.Add(Me.Button1)
         Me.PropertiesBox.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PropertiesBox.Location = New System.Drawing.Point(685, 48)
+        Me.PropertiesBox.Location = New System.Drawing.Point(659, 48)
         Me.PropertiesBox.Name = "PropertiesBox"
-        Me.PropertiesBox.Size = New System.Drawing.Size(275, 642)
+        Me.PropertiesBox.Size = New System.Drawing.Size(301, 642)
         Me.PropertiesBox.TabIndex = 17
         Me.PropertiesBox.Visible = False
         '
-        'Button1
+        'Label1
         '
-        Me.Button1.Location = New System.Drawing.Point(3, 3)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'PanelArrange
-        '
-        Me.PanelArrange.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PanelArrange.Controls.Add(Me.btnArrangeThem)
-        Me.PanelArrange.Controls.Add(Me.btnCntrlReload)
-        Me.PanelArrange.Controls.Add(Me.lblMainCntrl)
-        Me.PanelArrange.Controls.Add(Me.CbxMainCntrl)
-        Me.PanelArrange.Controls.Add(Me.lblspecified)
-        Me.PanelArrange.Controls.Add(Me.lblAll)
-        Me.PanelArrange.Controls.Add(Me.btnRemoveAll)
-        Me.PanelArrange.Controls.Add(Me.btnRemove)
-        Me.PanelArrange.Controls.Add(Me.btnAddAll)
-        Me.PanelArrange.Controls.Add(Me.btnAdd)
-        Me.PanelArrange.Controls.Add(Me.ListSpecified)
-        Me.PanelArrange.Controls.Add(Me.RadioButtonv)
-        Me.PanelArrange.Controls.Add(Me.RadioButtonh)
-        Me.PanelArrange.Controls.Add(Me.ListAll)
-        Me.PanelArrange.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelArrange.Location = New System.Drawing.Point(546, 48)
-        Me.PanelArrange.Name = "PanelArrange"
-        Me.PanelArrange.Size = New System.Drawing.Size(139, 642)
-        Me.PanelArrange.TabIndex = 27
-        Me.PanelArrange.Visible = False
-        '
-        'btnArrangeThem
-        '
-        Me.btnArrangeThem.Location = New System.Drawing.Point(30, 612)
-        Me.btnArrangeThem.Name = "btnArrangeThem"
-        Me.btnArrangeThem.Size = New System.Drawing.Size(93, 23)
-        Me.btnArrangeThem.TabIndex = 28
-        Me.btnArrangeThem.Text = "Arrange controls"
-        Me.btnArrangeThem.UseVisualStyleBackColor = True
-        '
-        'btnCntrlReload
-        '
-        Me.btnCntrlReload.Location = New System.Drawing.Point(30, 583)
-        Me.btnCntrlReload.Name = "btnCntrlReload"
-        Me.btnCntrlReload.Size = New System.Drawing.Size(93, 23)
-        Me.btnCntrlReload.TabIndex = 27
-        Me.btnCntrlReload.Text = "Reload controls"
-        Me.btnCntrlReload.UseVisualStyleBackColor = True
-        '
-        'lblMainCntrl
-        '
-        Me.lblMainCntrl.AutoSize = True
-        Me.lblMainCntrl.Location = New System.Drawing.Point(8, 17)
-        Me.lblMainCntrl.Name = "lblMainCntrl"
-        Me.lblMainCntrl.Size = New System.Drawing.Size(109, 13)
-        Me.lblMainCntrl.TabIndex = 26
-        Me.lblMainCntrl.Text = "Independent Control :"
-        '
-        'CbxMainCntrl
-        '
-        Me.CbxMainCntrl.FormattingEnabled = True
-        Me.CbxMainCntrl.Location = New System.Drawing.Point(12, 41)
-        Me.CbxMainCntrl.Name = "CbxMainCntrl"
-        Me.CbxMainCntrl.Size = New System.Drawing.Size(119, 21)
-        Me.CbxMainCntrl.TabIndex = 25
-        '
-        'lblspecified
-        '
-        Me.lblspecified.AutoSize = True
-        Me.lblspecified.Location = New System.Drawing.Point(23, 344)
-        Me.lblspecified.Name = "lblspecified"
-        Me.lblspecified.Size = New System.Drawing.Size(84, 13)
-        Me.lblspecified.TabIndex = 24
-        Me.lblspecified.Text = "To be Arranged:"
-        '
-        'lblAll
-        '
-        Me.lblAll.AutoSize = True
-        Me.lblAll.Location = New System.Drawing.Point(27, 122)
-        Me.lblAll.Name = "lblAll"
-        Me.lblAll.Size = New System.Drawing.Size(62, 13)
-        Me.lblAll.TabIndex = 23
-        Me.lblAll.Text = "All Controls:"
-        '
-        'btnRemoveAll
-        '
-        Me.btnRemoveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRemoveAll.Location = New System.Drawing.Point(71, 523)
-        Me.btnRemoveAll.Name = "btnRemoveAll"
-        Me.btnRemoveAll.Size = New System.Drawing.Size(39, 29)
-        Me.btnRemoveAll.TabIndex = 22
-        Me.btnRemoveAll.Text = "<<"
-        Me.btnRemoveAll.UseVisualStyleBackColor = True
-        '
-        'btnRemove
-        '
-        Me.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRemove.Location = New System.Drawing.Point(26, 523)
-        Me.btnRemove.Name = "btnRemove"
-        Me.btnRemove.Size = New System.Drawing.Size(39, 29)
-        Me.btnRemove.TabIndex = 21
-        Me.btnRemove.Text = "<"
-        Me.btnRemove.UseVisualStyleBackColor = True
-        '
-        'btnAddAll
-        '
-        Me.btnAddAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddAll.Location = New System.Drawing.Point(73, 301)
-        Me.btnAddAll.Name = "btnAddAll"
-        Me.btnAddAll.Size = New System.Drawing.Size(39, 29)
-        Me.btnAddAll.TabIndex = 20
-        Me.btnAddAll.Text = ">>"
-        Me.btnAddAll.UseVisualStyleBackColor = True
-        '
-        'btnAdd
-        '
-        Me.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAdd.Location = New System.Drawing.Point(28, 301)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(39, 29)
-        Me.btnAdd.TabIndex = 19
-        Me.btnAdd.Text = ">"
-        Me.btnAdd.UseVisualStyleBackColor = True
-        '
-        'ListSpecified
-        '
-        Me.ListSpecified.FormattingEnabled = True
-        Me.ListSpecified.HorizontalScrollbar = True
-        Me.ListSpecified.Location = New System.Drawing.Point(26, 367)
-        Me.ListSpecified.Name = "ListSpecified"
-        Me.ListSpecified.Size = New System.Drawing.Size(100, 147)
-        Me.ListSpecified.TabIndex = 18
-        '
-        'RadioButtonv
-        '
-        Me.RadioButtonv.AutoSize = True
-        Me.RadioButtonv.Location = New System.Drawing.Point(17, 92)
-        Me.RadioButtonv.Name = "RadioButtonv"
-        Me.RadioButtonv.Size = New System.Drawing.Size(60, 17)
-        Me.RadioButtonv.TabIndex = 17
-        Me.RadioButtonv.Text = "Vertical"
-        Me.RadioButtonv.UseVisualStyleBackColor = True
-        '
-        'RadioButtonh
-        '
-        Me.RadioButtonh.AutoSize = True
-        Me.RadioButtonh.Checked = True
-        Me.RadioButtonh.Location = New System.Drawing.Point(17, 68)
-        Me.RadioButtonh.Name = "RadioButtonh"
-        Me.RadioButtonh.Size = New System.Drawing.Size(72, 17)
-        Me.RadioButtonh.TabIndex = 16
-        Me.RadioButtonh.TabStop = True
-        Me.RadioButtonh.Text = "Horizontal"
-        Me.RadioButtonh.UseVisualStyleBackColor = True
-        '
-        'ListAll
-        '
-        Me.ListAll.ForeColor = System.Drawing.Color.Black
-        Me.ListAll.FormattingEnabled = True
-        Me.ListAll.HorizontalScrollbar = True
-        Me.ListAll.Location = New System.Drawing.Point(26, 145)
-        Me.ListAll.Name = "ListAll"
-        Me.ListAll.Size = New System.Drawing.Size(100, 147)
-        Me.ListAll.TabIndex = 15
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(367, 195)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(40, 13)
+        Me.Label1.TabIndex = 25
+        Me.Label1.Text = "pen ek"
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 712)
-        Me.Controls.Add(Me.PanelArrange)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ToolBox)
         Me.Controls.Add(Me.PropertiesBox)
         Me.Controls.Add(Me.WinKeeper)
@@ -792,7 +582,7 @@ Partial Class Main
         Me.Controls.Add(Me.StatusStrip)
         Me.IsMdiContainer = True
         Me.Name = "Main"
-        Me.Text = "#Menu Builder"
+        Me.Text = "For each cntrl in design.controls, get properties"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()
@@ -804,9 +594,6 @@ Partial Class Main
         Me.WinKeeper.PerformLayout()
         Me.ToolBox.ResumeLayout(False)
         Me.ToolBox.PerformLayout()
-        Me.PropertiesBox.ResumeLayout(False)
-        Me.PanelArrange.ResumeLayout(False)
-        Me.PanelArrange.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -866,32 +653,13 @@ Partial Class Main
     Friend WithEvents ControlSzChange As System.Windows.Forms.ToolStripButton
     Friend WithEvents CntrlArrow As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolLabel As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ControlsAvailable As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents LocXY As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolLinkLabel As System.Windows.Forms.ToolStripButton
     Friend WithEvents dvd1 As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents dvd2 As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents dvd3 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents PropertiesBox As System.Windows.Forms.FlowLayoutPanel
-    Friend WithEvents JToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PanelArrange As System.Windows.Forms.Panel
-    Friend WithEvents btnArrangeThem As System.Windows.Forms.Button
-    Friend WithEvents btnCntrlReload As System.Windows.Forms.Button
-    Friend WithEvents lblMainCntrl As System.Windows.Forms.Label
-    Friend WithEvents CbxMainCntrl As System.Windows.Forms.ComboBox
-    Friend WithEvents lblspecified As System.Windows.Forms.Label
-    Friend WithEvents lblAll As System.Windows.Forms.Label
-    Friend WithEvents btnRemoveAll As System.Windows.Forms.Button
-    Friend WithEvents btnRemove As System.Windows.Forms.Button
-    Friend WithEvents btnAddAll As System.Windows.Forms.Button
-    Friend WithEvents btnAdd As System.Windows.Forms.Button
-    Friend WithEvents ListSpecified As System.Windows.Forms.ListBox
-    Friend WithEvents RadioButtonv As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButtonh As System.Windows.Forms.RadioButton
-    Friend WithEvents ListAll As System.Windows.Forms.ListBox
     Friend WithEvents ToolStripSeparator9 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents btnMultiAdd As System.Windows.Forms.ToolStripButton
-    Friend WithEvents CntrlAdded_Selected As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents SelectedControl As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
 
 End Class

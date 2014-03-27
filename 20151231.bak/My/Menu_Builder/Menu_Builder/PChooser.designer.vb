@@ -30,6 +30,7 @@ Partial Public Class PChooser
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.TableLayout = New System.Windows.Forms.TableLayoutPanel()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.MaskedTextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -66,6 +67,7 @@ Partial Public Class PChooser
         Me.TableLayout.ColumnCount = 2
         Me.TableLayout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.25547!))
         Me.TableLayout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.74453!))
+        Me.TableLayout.Controls.Add(Me.Label17, 0, 15)
         Me.TableLayout.Controls.Add(Me.TextBox3, 1, 3)
         Me.TableLayout.Controls.Add(Me.Label15, 0, 14)
         Me.TableLayout.Controls.Add(Me.Label14, 0, 13)
@@ -93,7 +95,7 @@ Partial Public Class PChooser
         Me.TableLayout.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayout.Location = New System.Drawing.Point(0, 0)
         Me.TableLayout.Name = "TableLayout"
-        Me.TableLayout.RowCount = 15
+        Me.TableLayout.RowCount = 16
         Me.TableLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
@@ -109,8 +111,20 @@ Partial Public Class PChooser
         Me.TableLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.TableLayout.Size = New System.Drawing.Size(275, 473)
+        Me.TableLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.TableLayout.Size = New System.Drawing.Size(275, 500)
         Me.TableLayout.TabIndex = 0
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label17.Location = New System.Drawing.Point(4, 466)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(117, 33)
+        Me.Label17.TabIndex = 28
+        Me.Label17.Text = "Label17"
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'TextBox3
         '
@@ -126,7 +140,7 @@ Partial Public Class PChooser
         Me.Label15.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label15.Location = New System.Drawing.Point(4, 435)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(117, 37)
+        Me.Label15.Size = New System.Drawing.Size(117, 30)
         Me.Label15.TabIndex = 14
         Me.Label15.Text = "Label15"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -377,7 +391,7 @@ Partial Public Class PChooser
         Me.Controls.Add(Me.TableLayout)
         Me.Font = New System.Drawing.Font("Century", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "PChooser"
-        Me.Size = New System.Drawing.Size(275, 473)
+        Me.Size = New System.Drawing.Size(275, 500)
         Me.TableLayout.ResumeLayout(False)
         Me.TableLayout.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -411,5 +425,6 @@ Partial Public Class PChooser
     Friend WithEvents TextBox3 As System.Windows.Forms.MaskedTextBox
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox2 As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents Label17 As System.Windows.Forms.Label
 
 End Class

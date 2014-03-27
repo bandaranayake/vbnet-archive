@@ -16,6 +16,8 @@
         Label13.ResetText()
         Label14.ResetText()
         Label15.ResetText()
+        Label16.ResetText()
+        Label17.ResetText()
         ComboBox1.Items.Clear()
         ComboBox2.Items.Clear()
         TextBox1.Text = ""
