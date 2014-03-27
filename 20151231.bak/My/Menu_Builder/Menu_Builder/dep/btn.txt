@@ -7,6 +7,7 @@ AutoEllipsis As Boolean
 AutoSizeMode As AutoSizeMode
 CausesValidation As Boolean
 ContextMenuStrip As ContextMenuStrip
+DataBindings As ControlBindingsCollection
 DialogResult As DialogResult
 Enabled As Boolean
 ImageIndex As Integer

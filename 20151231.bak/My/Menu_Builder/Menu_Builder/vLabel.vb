@@ -28,6 +28,8 @@ Public Class vLabel
 
     '<Browsable(False)> _
     'Public Shadows Property ContextMenuStrip As ContextMenuStrip
+    <BrowsableAttribute(False)> _
+    Public Shadows Property DataBindings As ControlBindingsCollection
 
     <BrowsableAttribute(False)> _
        Public Shadows Property Enabled As Boolean

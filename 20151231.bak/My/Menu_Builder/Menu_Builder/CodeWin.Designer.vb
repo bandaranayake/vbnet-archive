@@ -159,6 +159,7 @@ Partial Class CmdWin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(293, 425)
         Me.Controls.Add(Me.RadioButton2)
         Me.Controls.Add(Me.Button1)

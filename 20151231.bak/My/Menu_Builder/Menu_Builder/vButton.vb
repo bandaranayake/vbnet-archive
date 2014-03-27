@@ -38,6 +38,9 @@ Public Class vButton
     'Public Shadows Property ContextMenuStrip As ContextMenuStrip
 
     <BrowsableAttribute(False)> _
+    Public Shadows Property DataBindings As ControlBindingsCollection
+
+    <BrowsableAttribute(False)> _
     Public Shadows Property DialogResult As DialogResult
 
     <BrowsableAttribute(False)> _

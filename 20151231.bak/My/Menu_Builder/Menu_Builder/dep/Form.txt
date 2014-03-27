@@ -14,11 +14,13 @@ CancelButton As IButtonControl
 CausesValidation As Boolean
 ContextMenuStrip As ContextMenuStrip
 DataBindings As ControlBindingsCollection
+Dock as Dockstyle
 Enabled As Boolean
 HelpButton As Boolean
 ImeMode As ImeMode
 IsMdiContainer As Boolean
 KeyPreview As Boolean
+Location as Point
 MainMenuStrip As MenuStrip
 Visible as Boolean
 Tag As Object

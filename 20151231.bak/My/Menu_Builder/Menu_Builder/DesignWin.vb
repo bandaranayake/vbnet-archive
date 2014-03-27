@@ -55,6 +55,9 @@ Public Class DesignWin
     Public Shadows Property DataBindings As ControlBindingsCollection
 
     <BrowsableAttribute(False)> _
+    Public Shadows Property Dock As DockStyle
+
+    <BrowsableAttribute(False)> _
     Public Shadows Property Enabled As Boolean
 
     <BrowsableAttribute(False)> _
@@ -68,6 +71,9 @@ Public Class DesignWin
 
     <BrowsableAttribute(False)> _
     Public Shadows Property KeyPreview As Boolean
+
+    <BrowsableAttribute(False)> _
+    Public Shadows Property Location As Point
 
     <BrowsableAttribute(False)> _
     Public Shadows Property MainMenuStrip As MenuStrip

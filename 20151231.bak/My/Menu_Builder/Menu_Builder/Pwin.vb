@@ -30,7 +30,7 @@ Public Class Pwin
             Me.Close()
         End If
 a:
-
+        TextBox1.Select()
     End Sub
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
@@ -47,6 +47,9 @@ a:
 
     Private Sub Pwin_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         TextBox2.Text = My.Computer.FileSystem.SpecialDirectories.MyDocuments + "\Menu Builder\Projects\"
+        TextBox1.Text = ""
+        TextBox1.Select()
+
     End Sub
 
 End Class

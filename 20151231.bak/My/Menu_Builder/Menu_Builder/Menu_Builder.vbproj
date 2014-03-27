@@ -165,9 +165,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dep\btn.txt" />
+    <Content Include="dep\btn_Include.txt" />
     <Content Include="dep\Form.txt" />
+    <Content Include="dep\Form_Included.txt" />
     <Content Include="dep\lbl.txt" />
+    <Content Include="dep\lbl_Included.txt" />
     <Content Include="dep\llbl.txt" />
+    <Content Include="dep\llbl_Included.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
