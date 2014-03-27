@@ -2,6 +2,7 @@
 
 Public Class DesignWin
     Inherits Form
+    Private components As System.ComponentModel.IContainer
 
 #Region "Hide Properties"
 
