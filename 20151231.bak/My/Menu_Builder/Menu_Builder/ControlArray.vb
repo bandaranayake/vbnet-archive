@@ -182,19 +182,19 @@ Public MustInherit Class ControlArray(Of TControl As Control)
 
 End Class
 
-<ProvideProperty("Index", GetType(vButton))>
+<ProvideProperty("Index", GetType(Button))>
 Public Class ButtonArray
-    Inherits ControlArray(Of vButton)
+    Inherits ControlArray(Of Button)
 End Class
 
-<ProvideProperty("Index", GetType(vLabel))>
+<ProvideProperty("Index", GetType(Label))>
 Public Class LabelArray
-    Inherits ControlArray(Of vLabel)
+    Inherits ControlArray(Of Label)
 End Class
 
-<ProvideProperty("Index", GetType(vLinkLabel))>
+<ProvideProperty("Index", GetType(LinkLabel))>
 Public Class LinkLabelArray
-    Inherits ControlArray(Of vLinkLabel)
+    Inherits ControlArray(Of LinkLabel)
 
 End Class
 
