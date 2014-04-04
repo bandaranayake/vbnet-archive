@@ -15,6 +15,21 @@
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -24,7 +39,7 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>Menu_Builder.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -34,7 +49,7 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>Menu_Builder.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -47,6 +62,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -75,10 +93,55 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlArray.vb">
-      <SubType>Component</SubType>
+    <Compile Include="Ptxt.designer.vb">
+      <DependentUpon>Ptxt.vb</DependentUpon>
     </Compile>
-    <Compile Include="GVariables.vb" />
+    <Compile Include="Ptxt.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame.Designer.vb">
+      <DependentUpon>Frame.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Frame.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pbtn.designer.vb">
+      <DependentUpon>Pbtn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pbtn.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ppan.designer.vb">
+      <DependentUpon>Ppan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ppan.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pimg.designer.vb">
+      <DependentUpon>Pimg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pimg.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pllbl.designer.vb">
+      <DependentUpon>Pllbl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pllbl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Plbl.designer.vb">
+      <DependentUpon>Plbl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Plbl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialog_FlatApp.Designer.vb">
+      <DependentUpon>Dialog_FlatApp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_FlatApp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GVandF.vb" />
     <Compile Include="Main.Designer.vb">
       <DependentUpon>Main.vb</DependentUpon>
     </Compile>
@@ -106,10 +169,50 @@
     <Compile Include="NewProject.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ActionPanel.designer.vb">
+      <DependentUpon>ActionPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ActionPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vControls.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FrameProperties.Designer.vb">
+      <DependentUpon>FrameProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrameProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Ptxt.resx">
+      <DependentUpon>Ptxt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame.resx">
+      <DependentUpon>Frame.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pbtn.resx">
+      <DependentUpon>Pbtn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ppan.resx">
+      <DependentUpon>Ppan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pimg.resx">
+      <DependentUpon>Pimg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pllbl.resx">
+      <DependentUpon>Pllbl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plbl.resx">
+      <DependentUpon>Plbl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_FlatApp.resx">
+      <DependentUpon>Dialog_FlatApp.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -120,8 +223,15 @@
     <EmbeddedResource Include="NewProject.resx">
       <DependentUpon>NewProject.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ActionPanel.resx">
+      <DependentUpon>ActionPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrameProperties.resx">
+      <DependentUpon>FrameProperties.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -133,14 +243,26 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dep\btn.txt" />
-    <Content Include="dep\btn_Include.txt" />
-    <Content Include="dep\Form.txt" />
-    <Content Include="dep\Form_Included.txt" />
-    <Content Include="dep\lbl.txt" />
-    <Content Include="dep\lbl_Included.txt" />
-    <Content Include="dep\llbl.txt" />
-    <Content Include="dep\llbl_Included.txt" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

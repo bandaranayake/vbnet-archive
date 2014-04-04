@@ -7,24 +7,24 @@ Public Class NewProject
         Dim special As New System.Text.RegularExpressions.Regex("[^a-zA-Z0-9]")
 
         ' Get project name & project path
-        ProjectName = txtProjectName.Text
+
         If txtProjectPath.Text.EndsWith("\") = False Then
-            ProjectPath = txtProjectPath.Text + "\"
+            ProjectPath = txtProjectPath.Text + "\" + txtProjectName.Text + "\"
         Else
-            ProjectPath = txtProjectPath.Text
+            ProjectPath = txtProjectPath.Text + txtProjectName.Text + "\"
         End If
 
         If special.Matches(txtProjectName.Text).Count > 0 Then
             txtProjectName.Text = ""
             MsgBox("Project name cannot contain any Special characters,unicodes and reserved names", MsgBoxStyle.Critical, "Error")
-        ElseIf My.Computer.FileSystem.DirectoryExists(ProjectPath) = False Then
+        ElseIf My.Computer.FileSystem.DirectoryExists(txtProjectPath.Text) = False Then
             txtProjectPath.Text = ""
             MsgBox("Specified project path is invalid !", MsgBoxStyle.Critical, "Error")
         ElseIf txtProjectName.Text.Length < 0 Then
             MsgBox("Invalid Project Name", MsgBoxStyle.Critical, "Error")
         Else
             Try
-                Directory.CreateDirectory(ProjectPath + ProjectName)
+                Directory.CreateDirectory(ProjectPath)
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
                 txtProjectName.Text = ""
@@ -56,8 +56,8 @@ a:
     End Sub
 
     Private Sub NewProject_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        txtProjectName.Text = ""
-        txtProjectPath.Text = ""
+        txtProjectName.Text = "a"
+        txtProjectPath.Text = "G:\isuru"
         txtProjectPath.Select()
     End Sub
 
