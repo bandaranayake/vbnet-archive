@@ -28,7 +28,7 @@ Partial Class Main
         Me.StatusBar = New System.Windows.Forms.StatusStrip()
         Me.lblStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblSpliter = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblProjectPath = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblProjectPath = New System.Windows.Forms.ToolStripSplitButton()
         Me.lblSpliter2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblXY = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblSpliter3 = New System.Windows.Forms.ToolStripStatusLabel()
@@ -153,9 +153,11 @@ Partial Class Main
         'lblProjectPath
         '
         Me.lblProjectPath.AutoSize = False
+        Me.lblProjectPath.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.lblProjectPath.DropDownButtonWidth = 0
         Me.lblProjectPath.ForeColor = System.Drawing.Color.White
         Me.lblProjectPath.Name = "lblProjectPath"
-        Me.lblProjectPath.Size = New System.Drawing.Size(250, 17)
+        Me.lblProjectPath.Size = New System.Drawing.Size(250, 20)
         Me.lblProjectPath.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblSpliter2
@@ -288,7 +290,7 @@ Partial Class Main
         Me.SelectAllToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ButtonsToolStripMenuItem, Me.LabelsToolStripMenuItem, Me.LinkLabelsToolStripMenuItem, Me.ImagesToolStripMenuItem, Me.PanelsToolStripMenuItem, Me.ToolStripSeparator10, Me.AllToolStripMenuItem})
         Me.SelectAllToolStripMenuItem.Name = "SelectAllToolStripMenuItem"
         Me.SelectAllToolStripMenuItem.ShowShortcutKeys = False
-        Me.SelectAllToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.SelectAllToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SelectAllToolStripMenuItem.Text = "Select &All"
         '
         'ButtonsToolStripMenuItem
@@ -334,7 +336,7 @@ Partial Class Main
         Me.PanelsToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
                     Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
         Me.PanelsToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
-        Me.PanelsToolStripMenuItem.Text = " Panels"
+        Me.PanelsToolStripMenuItem.Text = "Panels"
         Me.PanelsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'ToolStripSeparator10
@@ -353,18 +355,18 @@ Partial Class Main
         'RemoveAllToolStripMenuItem
         '
         Me.RemoveAllToolStripMenuItem.Name = "RemoveAllToolStripMenuItem"
-        Me.RemoveAllToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.RemoveAllToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.RemoveAllToolStripMenuItem.Text = "&Remove All"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(137, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(149, 6)
         '
         'UnselectAllToolStripMenuItem
         '
         Me.UnselectAllToolStripMenuItem.Name = "UnselectAllToolStripMenuItem"
-        Me.UnselectAllToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.UnselectAllToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.UnselectAllToolStripMenuItem.Text = "&Unselect All"
         '
         'ToolStripMenuItem3
@@ -481,7 +483,7 @@ Partial Class Main
         Me.TestNowToolStripMenuItem.Name = "TestNowToolStripMenuItem"
         Me.TestNowToolStripMenuItem.ShortcutKeyDisplayString = "F5"
         Me.TestNowToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.TestNowToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
+        Me.TestNowToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.TestNowToolStripMenuItem.Text = "&Test Now"
         '
         'FormatToolStripMenuItem
@@ -500,26 +502,26 @@ Partial Class Main
         '
         Me.ArrangeToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VerticallyToolStripMenuItem, Me.HorizontallyToolStripMenuItem})
         Me.ArrangeToolStripMenuItem.Name = "ArrangeToolStripMenuItem"
-        Me.ArrangeToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
+        Me.ArrangeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ArrangeToolStripMenuItem.Text = "Arrange"
         '
         'VerticallyToolStripMenuItem
         '
         Me.VerticallyToolStripMenuItem.Name = "VerticallyToolStripMenuItem"
-        Me.VerticallyToolStripMenuItem.Size = New System.Drawing.Size(141, 22)
+        Me.VerticallyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.VerticallyToolStripMenuItem.Text = "&Vertically"
         '
         'HorizontallyToolStripMenuItem
         '
         Me.HorizontallyToolStripMenuItem.Name = "HorizontallyToolStripMenuItem"
-        Me.HorizontallyToolStripMenuItem.Size = New System.Drawing.Size(141, 22)
+        Me.HorizontallyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.HorizontallyToolStripMenuItem.Text = "&Horizontally"
         '
         'OrderToolStripMenuItem
         '
         Me.OrderToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BringToFrontToolStripMenuItem, Me.SendToBackToolStripMenuItem})
         Me.OrderToolStripMenuItem.Name = "OrderToolStripMenuItem"
-        Me.OrderToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
+        Me.OrderToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OrderToolStripMenuItem.Text = "Order"
         '
         'BringToFrontToolStripMenuItem
@@ -549,35 +551,35 @@ Partial Class Main
         'HelpToolStripMenuItem1
         '
         Me.HelpToolStripMenuItem1.Name = "HelpToolStripMenuItem1"
-        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(149, 22)
+        Me.HelpToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.HelpToolStripMenuItem1.Text = "&Help"
         '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(146, 6)
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(149, 6)
         '
         'EmailToUSToolStripMenuItem
         '
         Me.EmailToUSToolStripMenuItem.Name = "EmailToUSToolStripMenuItem"
-        Me.EmailToUSToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+        Me.EmailToUSToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.EmailToUSToolStripMenuItem.Text = "&Email to Us"
         '
         'ReportABugToolStripMenuItem
         '
         Me.ReportABugToolStripMenuItem.Name = "ReportABugToolStripMenuItem"
-        Me.ReportABugToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+        Me.ReportABugToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ReportABugToolStripMenuItem.Text = "&Report a Bug"
         '
         'ToolStripSeparator11
         '
         Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
-        Me.ToolStripSeparator11.Size = New System.Drawing.Size(146, 6)
+        Me.ToolStripSeparator11.Size = New System.Drawing.Size(149, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'BottomToolStripPanel
@@ -905,7 +907,6 @@ Partial Class Main
     Friend WithEvents StatusBar As System.Windows.Forms.StatusStrip
     Friend WithEvents lblStatus As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents lblSpliter As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents lblProjectPath As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents lblSpliter2 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents lblXY As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents lblSpliter3 As System.Windows.Forms.ToolStripStatusLabel
@@ -958,5 +959,6 @@ Partial Class Main
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents PrintDocument1 As System.Drawing.Printing.PrintDocument
+    Friend WithEvents lblProjectPath As System.Windows.Forms.ToolStripSplitButton
 
 End Class

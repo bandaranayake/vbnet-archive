@@ -32,14 +32,15 @@ Public Class Main
 
     Dim prShowed As Boolean = False
     Dim acShowed As Boolean = False
-
     Dim FormDotXY As Integer = 8 '4
 
+    Dim wait As Boolean
     Dim testForm As New Form
 
     Dim tmpC1, tmpC2 As Color
 
     Private Sub NewToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewToolStripMenuItem.Click
+
         If p = True Then
             NewFrame.Close()
             If NewFrame.IsDisposed = False Then
@@ -79,7 +80,7 @@ Public Class Main
             AddHandler NewFrame.DragDrop, AddressOf D_DragDrop
             AddHandler NewFrame.DragEnter, AddressOf D_DragEnter
             AddHandler NewFrame.ControlRemoved, AddressOf F_ControlRemoved
-
+           
             NewFrame.Show()
 
             lblProjectPath.Text = ProjectPath
@@ -102,7 +103,7 @@ en:
 
     Private Sub cntrlDelete(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If multiSelect = True Then
-            Using redPen As New Pen(Color.Red), _
+            Using redPen As New Pen(Color.BlueViolet, 1), _
           formGraphics As Graphics = sender.Parent.CreateGraphics()
                 formGraphics.DrawRectangle(redPen, New Rectangle(sender.location.x - 1, sender.location.y - 1, sender.width + 1, sender.height + 1))
             End Using
@@ -236,6 +237,17 @@ en:
         If btnCanAdd = True Then
             i = i + 1
             btn = New vButton
+
+            For xx As Integer = 0 To 5
+                btn.int(xx) = 0
+                If xx <= 4 Then
+                    btn.bn(xx) = False
+                End If
+                If xx <= 1 Then
+                    btn.st(xx) = ""
+                End If
+            Next
+
             btn.Name = "btn" + i.ToString
             btn.Text = "Button " + i.ToString
             btn.Size = New Point(75, 23)
@@ -266,6 +278,17 @@ en:
 
             j = j + 1
             lbl = New vLabel
+
+            For xx As Integer = 0 To 5
+                lbl.int(xx) = 0
+                If xx <= 4 Then
+                    lbl.bn(xx) = False
+                End If
+                If xx <= 1 Then
+                    lbl.st(xx) = ""
+                End If
+            Next
+
             lbl.Name = "lbl" + j.ToString
             lbl.Text = "Label " + j.ToString
             lbl.BackColor = Color.YellowGreen
@@ -295,6 +318,17 @@ en:
 
             k = k + 1
             lblL = New vLinkLabel
+
+            For xx As Integer = 0 To 5
+                lblL.int(xx) = 0
+                If xx <= 4 Then
+                    lblL.bn(xx) = False
+                End If
+                If xx <= 1 Then
+                    lblL.st(xx) = ""
+                End If
+            Next
+
             lblL.Name = "ink" + k.ToString
             lblL.Text = "Link Label " + k.ToString
             lblL.BackColor = Color.LightSkyBlue
@@ -324,6 +358,17 @@ en:
         ElseIf imgCanAdd = True Then
             l = l + 1
             img = New vImage
+
+            For xx As Integer = 0 To 5
+                img.int(xx) = 0
+                If xx <= 4 Then
+                    img.bn(xx) = False
+                End If
+                If xx <= 1 Then
+                    img.st(xx) = ""
+                End If
+            Next
+
             img.Name = "img" + l.ToString
             img.Text = "Image " + l.ToString
             img.Size = New Point(80, 80)
@@ -350,11 +395,19 @@ en:
             lblXY.Text = img.Location.X.ToString + "," + img.Location.Y.ToString
 
         ElseIf SPanCanAdd = True Then
-            'If TypeOf sender Is Panel Then
-            '    MsgBox("Container cannot be added into another container !", MsgBoxStyle.Information, "Error !")
-            'Else
             m = m + 1
             Pan = New vPanel
+
+            For xx As Integer = 0 To 5
+                Pan.int(xx) = 0
+                If xx <= 4 Then
+                    Pan.bn(xx) = False
+                End If
+                If xx <= 1 Then
+                    Pan.st(xx) = ""
+                End If
+            Next
+
             Pan.Name = "Pan" + m.ToString
             Pan.Text = "Panel " + m.ToString
             Pan.Size = New Point(150, 150)
@@ -385,6 +438,7 @@ en:
         ElseIf TextCanAdd = True Then
             m = m + 1
             Tex = New vTextBox
+
             Tex.Name = "Txt" + m.ToString
             Tex.Text = "TextBox " + m.ToString
             Tex.Size = New Point(100, 20)
@@ -543,7 +597,7 @@ en:
         clean()
         clean0()
         For Each c In NewFrame.Controls
-            Using redPen As New Pen(Color.Red), _
+            Using redPen As New Pen(Color.BlueViolet, 1), _
        formGraphics As Graphics = NewFrame.CreateGraphics()
                 formGraphics.DrawRectangle(redPen, New Rectangle(c.Location.X - 1, c.Location.Y - 1, c.Width + 1, c.Height + 1))
             End Using
@@ -558,7 +612,7 @@ en:
         clean0()
         For Each c In NewFrame.Controls
             If TypeOf c Is Button Then
-                Using redPen As New Pen(Color.Red), _
+                Using redPen As New Pen(Color.BlueViolet, 1), _
        formGraphics As Graphics = NewFrame.CreateGraphics()
                     formGraphics.DrawRectangle(redPen, New Rectangle(c.Location.X - 1, c.Location.Y - 1, c.Width + 1, c.Height + 1))
                 End Using
@@ -575,7 +629,7 @@ en:
         For Each c In NewFrame.Controls
             If TypeOf c Is LinkLabel Then
             ElseIf TypeOf c Is Label Then
-                Using redPen As New Pen(Color.Red), _
+                Using redPen As New Pen(Color.BlueViolet, 1), _
        formGraphics As Graphics = NewFrame.CreateGraphics()
                     formGraphics.DrawRectangle(redPen, New Rectangle(c.Location.X - 1, c.Location.Y - 1, c.Width + 1, c.Height + 1))
                 End Using
@@ -591,7 +645,7 @@ en:
         clean0()
         For Each c In NewFrame.Controls
             If TypeOf c Is LinkLabel Then
-                Using redPen As New Pen(Color.Red), _
+                Using redPen As New Pen(Color.BlueViolet, 1), _
      formGraphics As Graphics = NewFrame.CreateGraphics()
                     formGraphics.DrawRectangle(redPen, New Rectangle(c.Location.X - 1, c.Location.Y - 1, c.Width + 1, c.Height + 1))
                 End Using
@@ -607,7 +661,7 @@ en:
         clean0()
         For Each c In NewFrame.Controls
             If TypeOf c Is PictureBox Then
-                Using redPen As New Pen(Color.Red), _
+                Using redPen As New Pen(Color.BlueViolet, 1), _
      formGraphics As Graphics = NewFrame.CreateGraphics()
                     formGraphics.DrawRectangle(redPen, New Rectangle(c.Location.X - 1, c.Location.Y - 1, c.Width + 1, c.Height + 1))
                 End Using
@@ -622,7 +676,7 @@ en:
         clean0()
         For Each c In NewFrame.Controls
             If TypeOf c Is Panel Then
-                Using redPen As New Pen(Color.Red), _
+                Using redPen As New Pen(Color.BlueViolet, 1), _
 formGraphics As Graphics = NewFrame.CreateGraphics()
                     formGraphics.DrawRectangle(redPen, New Rectangle(c.Location.X - 1, c.Location.Y - 1, c.Width + 1, c.Height + 1))
                 End Using
@@ -765,6 +819,22 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
         ElseIf e.KeyCode = Keys.ControlKey Then
             MultiAddCntrl = True
             multiSelect = True
+        ElseIf e.KeyCode = Keys.NumPad6 Then
+            If Not TypeOf sender Is Form Then
+                sender.Location = New Point(sender.Location.X + 1, sender.Location.Y)
+            End If
+        ElseIf e.KeyCode = Keys.NumPad4 Then
+            If Not TypeOf sender Is Form Then
+                sender.Location = New Point(sender.Location.X - 1, sender.Location.Y)
+            End If
+        ElseIf e.KeyCode = Keys.NumPad2 Then
+            If Not TypeOf sender Is Form Then
+                sender.Location = New Point(sender.Location.X, sender.Location.Y + 1)
+            End If
+        ElseIf e.KeyCode = Keys.NumPad8 Then
+            If Not TypeOf sender Is Form Then
+                sender.Location = New Point(sender.Location.X, sender.Location.Y - 1)
+            End If
         End If
     End Sub
 
@@ -1207,926 +1277,1111 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
     End Sub
 
     Sub Save()
-        '        lblStatus.Text = "Saving..."
+        lblStatus.Text = "Saving..."
+        Dim binWriter As New BinaryWriter( _
+   File.Open(ProjectPath + "Project.amb", FileMode.Create))
 
-        '        Dim binWriter As New BinaryWriter( _
-        '   File.Open(ProjectPath + "\Project.amb", FileMode.Create))
+        Dim tmpString As String
 
-        '        Dim tmpString As String
+        binWriter.Write(NewFrame.AutoSizeMode)
+        binWriter.Write(NewFrame.BackgroundImageLayout)
+        binWriter.Write(NewFrame.FormBorderStyle)
+        binWriter.Write(NewFrame.RightToLeft)
+        binWriter.Write(NewFrame.SizeGripStyle)
+        binWriter.Write(NewFrame.StartPosition)
+        binWriter.Write(NewFrame.WindowState)
 
-        '        binWriter.Write(ProjectName)
-        '        binWriter.Write(NewFrame.AutoSizeMode)
-        '        binWriter.Write(NewFrame.BackgroundImageLayout)
-        '        binWriter.Write(NewFrame.FormBorderStyle)
-        '        binWriter.Write(NewFrame.RightToLeft)
-        '        binWriter.Write(NewFrame.SizeGripStyle)
-        '        binWriter.Write(NewFrame.StartPosition)
-        '        binWriter.Write(NewFrame.WindowState)
+        binWriter.Write(NewFrame.AutoScroll)
+        binWriter.Write(NewFrame.AutoSize)
+        binWriter.Write(NewFrame.ControlBox)
+        binWriter.Write(NewFrame.MaximizeBox)
+        binWriter.Write(NewFrame.MinimizeBox)
+        binWriter.Write(NewFrame.RightToLeftLayout)
+        binWriter.Write(NewFrame.ShowIcon)
+        binWriter.Write(NewFrame.ShowInTaskbar)
+        binWriter.Write(NewFrame.TopMost)
+        binWriter.Write(NewFrame.Opacity)
+        binWriter.Write(NewFrame.BackColor.ToArgb)
+        binWriter.Write(NewFrame.ForeColor.ToArgb)
+        binWriter.Write(NewFrame.TransparencyKey.ToArgb)
 
-        '        binWriter.Write(NewFrame.AutoScroll)
-        '        binWriter.Write(NewFrame.AutoSize)
-        '        binWriter.Write(NewFrame.ControlBox)
-        '        binWriter.Write(NewFrame.MaximizeBox)
-        '        binWriter.Write(NewFrame.MinimizeBox)
-        '        binWriter.Write(NewFrame.RightToLeftLayout)
-        '        binWriter.Write(NewFrame.ShowIcon)
-        '        binWriter.Write(NewFrame.ShowInTaskbar)
-        '        binWriter.Write(NewFrame.TopMost)
-        '        binWriter.Write(NewFrame.Opacity)
-        '        binWriter.Write(NewFrame.BackColor.ToArgb)
-        '        binWriter.Write(NewFrame.ForeColor.ToArgb)
-        '        binWriter.Write(NewFrame.TransparencyKey.ToArgb)
+        binWriter.Write(NewFrame.Text)
+        binWriter.Write(NewFrame.Width)
+        binWriter.Write(NewFrame.Height)
+        binWriter.Write(NewFrame.MinimumSize.Width)
+        binWriter.Write(NewFrame.MinimumSize.Height)
+        binWriter.Write(NewFrame.MaximumSize.Width)
+        binWriter.Write(NewFrame.MaximumSize.Height)
 
-        '        binWriter.Write(NewFrame.Text)
-        '        binWriter.Write(NewFrame.Width)
-        '        binWriter.Write(NewFrame.Height)
-        '        binWriter.Write(NewFrame.MinimumSize.Width)
-        '        binWriter.Write(NewFrame.MinimumSize.Height)
-        '        binWriter.Write(NewFrame.MaximumSize.Width)
-        '        binWriter.Write(NewFrame.MaximumSize.Height)
+        binWriter.Write(NewFrame.Font.Name)
+        binWriter.Write(NewFrame.Font.Size)
+        binWriter.Write(NewFrame.Font.Style)
+        binWriter.Write(NewFrame.Font.Unit)
 
-        '        binWriter.Write(NewFrame.Font.Name)
-        '        binWriter.Write(NewFrame.Font.Size)
-        '        binWriter.Write(NewFrame.Font.Style)
-        '        binWriter.Write(NewFrame.Font.Unit)
+        If GetCursor(NewFrame.Cursor) = False Then
+            Try
+                tmpString = GetRandomName()
+                File.Copy(NewFrame.CursorFile, ProjectPath + tmpString)
+                binWriter.Write(True)
+                binWriter.Write(tmpString)
+            Catch ex As Exception
+                binWriter.Write(False)
+                binWriter.Write(1)
+            End Try
+        Else
+            binWriter.Write(False)
+            binWriter.Write(GetCursor(NewFrame.Cursor))
+        End If
 
-        '        If GetCursor(NewFrame.Cursor) = False Then
-        '            Try
-        '                tmpString = GetRandomName()
-        '                File.Copy(NewFrame.CursorFile, ProjectPath + "\" + tmpString)
-        '                binWriter.Write(True)
-        '                binWriter.Write(tmpString)
-        '            Catch ex As Exception
-        '                binWriter.Write(False)
-        '                binWriter.Write(1)
-        '            End Try
-        '        Else
-        '            binWriter.Write(False)
-        '            binWriter.Write(GetCursor(NewFrame.Cursor))
-        '        End If
+        If BImageChanged = True Then
+            Try
+                tmpString = GetRandomName()
+                NewFrame.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                binWriter.Write(True)
+                binWriter.Write(tmpString)
+            Catch ex As Exception
+                binWriter.Write(False)
+            End Try
+        Else
+            binWriter.Write(False)
+        End If
 
-        '        If BImageChanged = True Then
-        '            Try
-        '                tmpString = GetRandomName()
-        '                NewFrame.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-        '                binWriter.Write(True)
-        '                binWriter.Write(tmpString)
-        '            Catch ex As Exception
-        '                binWriter.Write(False)
-        '            End Try
-        '        Else
-        '            binWriter.Write(False)
-        '        End If
+        If File.Exists(NewFrame.IconFile) = True Then
+            Try
+                tmpString = GetRandomName()
+                File.Copy(NewFrame.IconFile, ProjectPath + "\" + tmpString)
+                binWriter.Write(True)
+                binWriter.Write(tmpString)
+            Catch ex As Exception
+                binWriter.Write(False)
+            End Try
+        Else
+            binWriter.Write(False)
+        End If
 
-        '        If IconChanged = True Then
-        '            Try
-        '                tmpString = GetRandomName()
-        '                File.Copy(NewFrame.IconFile, ProjectPath + "\" + tmpString)
-        '                binWriter.Write(True)
-        '                binWriter.Write(tmpString)
-        '            Catch ex As Exception
-        '                binWriter.Write(False)
-        '            End Try
-        '        Else
-        '            binWriter.Write(False)
-        '        End If
+        binWriter.Write(i)
+        binWriter.Write(j)
+        binWriter.Write(k)
+        binWriter.Write(l)
+        binWriter.Write(m)
+        binWriter.Write(n)
 
-        '        binWriter.Write(i)
-        '        binWriter.Write(j)
-        '        binWriter.Write(k)
-        '        binWriter.Write(l)
-        '        binWriter.Write(m)
-        '        binWriter.Write(n)
+        If NewFrame.Controls.Count > 0 Then
+            binWriter.Write(True)
+            binWriter.Dispose()
+            WriteControls(NewFrame, ProjectPath + "Controls.dat")
+        Else
+            binWriter.Write(False)
+            binWriter.Dispose()
+        End If
 
-        '        If NewFrame.Controls.Count > 0 Then
-        '            binWriter.Write(True)
-        '            WriteControls(NewFrame, ProjectPath + "\Controls.dat")
-        '        Else
-        '            binWriter.Write(False)
-        '        End If
-
-        '        binWriter.Dispose()
-        '        lblStatus.Text = "Ready"
+        lblStatus.Text = "Ready"
     End Sub
 
     Sub WriteControls(ByVal Contain As Control, ByVal Path As String)
-        '        Dim binWriter As New BinaryWriter( _
-        '  File.Open(Path, FileMode.OpenOrCreate))
+        Dim binWriter As New BinaryWriter( _
+  File.Open(Path, FileMode.OpenOrCreate))
 
-        '        Dim tmpString As String
+        Dim tmpString As String
 
-        '        binWriter.Write(Contain.Controls.Count)
+        binWriter.Write(Contain.Controls.Count)
 
-        '        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        '        '########################################################################
-        '        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        '        For Each c As Control In Contain.Controls
-        '            If TypeOf c Is vButton Then
-        '                btn = c
-        '                binWriter.Write(0)
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        '########################################################################
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        For Each c As Control In Contain.Controls
+            If TypeOf c Is vButton Then
+                btn = c
+                binWriter.Write(0)
 
-        '                binWriter.Write(btn.Text)
-        '                binWriter.Write(btn.BackColor.ToArgb)
-        '                binWriter.Write(btn.Name)
-        '                binWriter.Write(btn.BackgroundImageLayout)
-        '                binWriter.Write(btn.FlatAppearance.BorderColor.ToArgb)
-        '                binWriter.Write(btn.FlatAppearance.BorderSize)
-        '                binWriter.Write(btn.FlatAppearance.MouseDownBackColor.ToArgb)
-        '                binWriter.Write(btn.FlatAppearance.MouseOverBackColor.ToArgb)
-        '                binWriter.Write(btn.FlatStyle)
-        '                binWriter.Write(btn.Font.Name)
-        '                binWriter.Write(btn.Font.Size)
-        '                binWriter.Write(btn.Font.Style)
-        '                binWriter.Write(btn.Font.Unit)
-        '                binWriter.Write(btn.ForeColor.ToArgb)
-        '                binWriter.Write(btn.ImageAlign)
-        '                binWriter.Write(btn.TextAlign)
-        '                binWriter.Write(btn.TextImageRelation)
-        '                binWriter.Write(btn.UseMnemonic)
-        '                binWriter.Write(btn.UseVisualStyleBackColor)
-        '                binWriter.Write(btn.UseWaitCursor)
-        '                binWriter.Write(btn.AutoSize)
-        '                binWriter.Write(btn.TabStop)
-        '                binWriter.Write(btn.TabIndex)
-        '                binWriter.Write(btn.Location.X)
-        '                binWriter.Write(btn.Location.Y)
-        '                binWriter.Write(btn.Width)
-        '                binWriter.Write(btn.Height)
-        '                binWriter.Write(btn.MinimumSize.Width)
-        '                binWriter.Write(btn.MinimumSize.Height)
-        '                binWriter.Write(btn.MaximumSize.Width)
-        '                binWriter.Write(btn.MaximumSize.Height)
-        '                binWriter.Write(btn.Dock)
-        '                binWriter.Write(btn.RightToLeft)
+                binWriter.Write(btn.Text)
+                binWriter.Write(btn.BackColor.ToArgb)
+                binWriter.Write(btn.Name)
+                binWriter.Write(btn.BackgroundImageLayout)
+                binWriter.Write(btn.FlatAppearance.BorderColor.ToArgb)
+                binWriter.Write(btn.FlatAppearance.BorderSize)
+                binWriter.Write(btn.FlatAppearance.MouseDownBackColor.ToArgb)
+                binWriter.Write(btn.FlatAppearance.MouseOverBackColor.ToArgb)
+                binWriter.Write(btn.FlatStyle)
+                binWriter.Write(btn.Font.Name)
+                binWriter.Write(btn.Font.Size)
+                binWriter.Write(btn.Font.Style)
+                binWriter.Write(btn.Font.Unit)
+                binWriter.Write(btn.ForeColor.ToArgb)
+                binWriter.Write(btn.ImageAlign)
+                binWriter.Write(btn.TextAlign)
+                binWriter.Write(btn.TextImageRelation)
+                binWriter.Write(btn.UseMnemonic)
+                binWriter.Write(btn.UseVisualStyleBackColor)
+                binWriter.Write(btn.UseWaitCursor)
+                binWriter.Write(btn.AutoSize)
+                binWriter.Write(btn.TabStop)
+                binWriter.Write(btn.TabIndex)
+                binWriter.Write(btn.Location.X)
+                binWriter.Write(btn.Location.Y)
+                binWriter.Write(btn.Width)
+                binWriter.Write(btn.Height)
+                binWriter.Write(btn.MinimumSize.Width)
+                binWriter.Write(btn.MinimumSize.Height)
+                binWriter.Write(btn.MaximumSize.Width)
+                binWriter.Write(btn.MaximumSize.Height)
+                binWriter.Write(btn.Dock)
+                binWriter.Write(btn.RightToLeft)
 
-        '                If File.Exists(btn.ActionFile) = True Then
-        '                    binWriter.Write(True)
-        '                    binWriter.Write(btn.ActionFile)
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+                binWriter.Write(btn.int(0))
+                binWriter.Write(btn.int(1))
+                binWriter.Write(btn.int(2))
+                binWriter.Write(btn.int(3))
+                binWriter.Write(btn.int(4))
+                binWriter.Write(btn.int(5))
 
-        '                If btn.b1 = True Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        File.Copy(btn.CursorFile, ProjectPath + "\" + tmpString)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                        binWriter.Write(1)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                    binWriter.Write(GetCursor(btn.Cursor))
-        '                End If
+                binWriter.Write(btn.bn(0))
+                binWriter.Write(btn.bn(1))
+                binWriter.Write(btn.bn(2))
+                binWriter.Write(btn.bn(3))
+                binWriter.Write(btn.bn(4))
 
-        '                If Not btn.BackgroundImage Is Nothing Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        btn.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+                binWriter.Write(btn.st(0))
+                binWriter.Write(btn.st(1))
 
-        '                If Not btn.Image Is Nothing Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        btn.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
 
-        '            ElseIf TypeOf c Is vLinkLabel Then
-        '                lblL = c
-        '                binWriter.Write(1)
+            If btn.b1 = True Then
+                Try
+                    tmpString = GetRandomName()
+                    File.Copy(btn.CursorFile, ProjectPath + "\" + tmpString)
+                    binWriter.Write(True)
+                    binWriter.Write(tmpString)
+                Catch ex As Exception
+                    binWriter.Write(False)
+                    binWriter.Write(1)
+                End Try
+            Else
+                binWriter.Write(False)
+                binWriter.Write(GetCursor(btn.Cursor))
+            End If
 
-        '                binWriter.Write(lblL.Text)
-        '                binWriter.Write(lblL.ImageAlign)
-        '                binWriter.Write(lblL.Name)
-        '                binWriter.Write(lblL.TextAlign)
-        '                binWriter.Write(lblL.ForeColor.ToArgb)
-        '                binWriter.Write(lblL.BackColor.ToArgb)
-        '                binWriter.Write(lblL.ActiveLinkColor.ToArgb)
-        '                binWriter.Write(lblL.VisitedLinkColor.ToArgb)
-        '                binWriter.Write(lblL.LinkColor.ToArgb)
-        '                binWriter.Write(lblL.DisabledLinkColor.ToArgb)
-        '                binWriter.Write(lblL.LinkBehavior)
-        '                binWriter.Write(lblL.LinkVisited)
-        '                binWriter.Write(lblL.Font.Name)
-        '                binWriter.Write(lblL.Font.Size)
-        '                binWriter.Write(lblL.Font.Style)
-        '                binWriter.Write(lblL.Font.Unit)
-        '                binWriter.Write(lblL.UseMnemonic)
-        '                binWriter.Write(lblL.UseWaitCursor)
-        '                binWriter.Write(lblL.AutoSize)
-        '                binWriter.Write(lblL.TabStop)
-        '                binWriter.Write(lblL.TabIndex)
-        '                binWriter.Write(lblL.Location.X)
-        '                binWriter.Write(lblL.Location.Y)
-        '                binWriter.Write(lblL.Width)
-        '                binWriter.Write(lblL.Height)
-        '                binWriter.Write(lblL.MaximumSize.Width)
-        '                binWriter.Write(lblL.MaximumSize.Height)
-        '                binWriter.Write(lblL.MinimumSize.Width)
-        '                binWriter.Write(lblL.MinimumSize.Height)
-        '                binWriter.Write(lblL.LinkArea.Start)
-        '                binWriter.Write(lblL.LinkArea.Length)
-        '                binWriter.Write(lblL.Dock)
-        '                binWriter.Write(lblL.RightToLeft)
+            If Not btn.BackgroundImage Is Nothing Then
+                Try
+                    tmpString = GetRandomName()
+                    btn.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                    binWriter.Write(True)
+                    binWriter.Write(tmpString)
+                Catch ex As Exception
+                    binWriter.Write(False)
+                End Try
+            Else
+                binWriter.Write(False)
+            End If
 
-        '                If File.Exists(lblL.ActionFile) = True Then
-        '                    binWriter.Write(True)
-        '                    binWriter.Write(lblL.ActionFile)
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+            If Not btn.Image Is Nothing Then
+                Try
+                    tmpString = GetRandomName()
+                    btn.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                    binWriter.Write(True)
+                    binWriter.Write(tmpString)
+                Catch ex As Exception
+                    binWriter.Write(False)
+                End Try
+            Else
+                binWriter.Write(False)
+            End If
 
-        '                If lblL.b1 = True Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        File.Copy(lblL.CursorFile, ProjectPath + "\" + tmpString)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                        binWriter.Write(1)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                    binWriter.Write(GetCursor(lblL.Cursor))
-        '                End If
+            ElseIf TypeOf c Is vLinkLabel Then
+            lblL = c
+            binWriter.Write(1)
 
-        '                If Not lblL.Image Is Nothing Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        lblL.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+            binWriter.Write(lblL.Text)
+            binWriter.Write(lblL.ImageAlign)
+            binWriter.Write(lblL.Name)
+            binWriter.Write(lblL.TextAlign)
+            binWriter.Write(lblL.ForeColor.ToArgb)
+            binWriter.Write(lblL.BackColor.ToArgb)
+            binWriter.Write(lblL.ActiveLinkColor.ToArgb)
+            binWriter.Write(lblL.VisitedLinkColor.ToArgb)
+            binWriter.Write(lblL.LinkColor.ToArgb)
+            binWriter.Write(lblL.DisabledLinkColor.ToArgb)
+            binWriter.Write(lblL.LinkBehavior)
+            binWriter.Write(lblL.LinkVisited)
+            binWriter.Write(lblL.Font.Name)
+            binWriter.Write(lblL.Font.Size)
+            binWriter.Write(lblL.Font.Style)
+            binWriter.Write(lblL.Font.Unit)
+            binWriter.Write(lblL.UseMnemonic)
+            binWriter.Write(lblL.UseWaitCursor)
+            binWriter.Write(lblL.AutoSize)
+            binWriter.Write(lblL.TabStop)
+            binWriter.Write(lblL.TabIndex)
+            binWriter.Write(lblL.Location.X)
+            binWriter.Write(lblL.Location.Y)
+            binWriter.Write(lblL.Width)
+            binWriter.Write(lblL.Height)
+            binWriter.Write(lblL.MaximumSize.Width)
+            binWriter.Write(lblL.MaximumSize.Height)
+            binWriter.Write(lblL.MinimumSize.Width)
+            binWriter.Write(lblL.MinimumSize.Height)
+            binWriter.Write(lblL.LinkArea.Start)
+            binWriter.Write(lblL.LinkArea.Length)
+            binWriter.Write(lblL.Dock)
+            binWriter.Write(lblL.RightToLeft)
 
-        '            ElseIf TypeOf c Is vLabel Then
-        '                lbl = c
+                binWriter.Write(lblL.int(0))
+                binWriter.Write(lblL.int(1))
+                binWriter.Write(lblL.int(2))
+                binWriter.Write(lblL.int(3))
+                binWriter.Write(lblL.int(4))
+                binWriter.Write(lblL.int(5))
 
-        '                binWriter.Write(2)
+                binWriter.Write(lblL.bn(0))
+                binWriter.Write(lblL.bn(1))
+                binWriter.Write(lblL.bn(2))
+                binWriter.Write(lblL.bn(3))
+                binWriter.Write(lblL.bn(4))
 
-        '                binWriter.Write(lbl.Text)
-        '                binWriter.Write(lbl.BorderStyle)
-        '                binWriter.Write(lbl.Name)
-        '                binWriter.Write(lbl.Font.Name)
-        '                binWriter.Write(lbl.Font.Size)
-        '                binWriter.Write(lbl.Font.Style)
-        '                binWriter.Write(lbl.Font.Unit)
-        '                binWriter.Write(lbl.FlatStyle)
-        '                binWriter.Write(lbl.ImageAlign)
-        '                binWriter.Write(lbl.TextAlign)
-        '                binWriter.Write(lbl.ForeColor.ToArgb)
-        '                binWriter.Write(lbl.BackColor.ToArgb)
-        '                binWriter.Write(lbl.UseMnemonic)
-        '                binWriter.Write(lbl.UseWaitCursor)
-        '                binWriter.Write(lbl.AutoSize)
-        '                binWriter.Write(lbl.TabIndex)
-        '                binWriter.Write(lbl.Location.X)
-        '                binWriter.Write(lbl.Location.Y)
-        '                binWriter.Write(lbl.Width)
-        '                binWriter.Write(lbl.Height)
-        '                binWriter.Write(lbl.MaximumSize.Width)
-        '                binWriter.Write(lbl.MaximumSize.Height)
-        '                binWriter.Write(lbl.MinimumSize.Width)
-        '                binWriter.Write(lbl.MinimumSize.Height)
-        '                binWriter.Write(lbl.Dock)
-        '                binWriter.Write(lbl.RightToLeft)
+                binWriter.Write(lblL.st(0))
+                binWriter.Write(lblL.st(1))
 
-        '                If File.Exists(lbl.ActionFile) = True Then
-        '                    binWriter.Write(True)
-        '                    binWriter.Write(lbl.ActionFile)
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+                If lblL.b1 = True Then
+                    Try
+                        tmpString = GetRandomName()
+                        File.Copy(lblL.CursorFile, ProjectPath + "\" + tmpString)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                        binWriter.Write(1)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                    binWriter.Write(GetCursor(lblL.Cursor))
+                End If
 
-        '                If lbl.b1 = True Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        File.Copy(lbl.CursorFile, ProjectPath + "\" + tmpString)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                        binWriter.Write(1)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                    binWriter.Write(GetCursor(lbl.Cursor))
-        '                End If
+                If Not lblL.Image Is Nothing Then
+                    Try
+                        tmpString = GetRandomName()
+                        lblL.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                End If
 
-        '                If Not lbl.Image Is Nothing Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        lbl.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+            ElseIf TypeOf c Is vLabel Then
+                lbl = c
 
-        '            ElseIf TypeOf c Is PictureBox Then
-        '                img = c
+                binWriter.Write(2)
 
-        '                binWriter.Write(3)
-        '                binWriter.Write(img.Name)
-        '                binWriter.Write(img.BackColor.ToArgb)
-        '                binWriter.Write(img.BackgroundImageLayout)
-        '                If img.ImageLocation IsNot Nothing Then
-        '                    binWriter.Write(True)
-        '                    binWriter.Write(img.ImageLocation)
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
-        '                binWriter.Write(img.SizeMode)
-        '                binWriter.Write(img.UseWaitCursor)
-        '                binWriter.Write(img.WaitOnLoad)
+                binWriter.Write(lbl.Text)
+                binWriter.Write(lbl.BorderStyle)
+                binWriter.Write(lbl.Name)
+                binWriter.Write(lbl.Font.Name)
+                binWriter.Write(lbl.Font.Size)
+                binWriter.Write(lbl.Font.Style)
+                binWriter.Write(lbl.Font.Unit)
+                binWriter.Write(lbl.FlatStyle)
+                binWriter.Write(lbl.ImageAlign)
+                binWriter.Write(lbl.TextAlign)
+                binWriter.Write(lbl.ForeColor.ToArgb)
+                binWriter.Write(lbl.BackColor.ToArgb)
+                binWriter.Write(lbl.UseMnemonic)
+                binWriter.Write(lbl.UseWaitCursor)
+                binWriter.Write(lbl.AutoSize)
+                binWriter.Write(lbl.TabIndex)
+                binWriter.Write(lbl.Location.X)
+                binWriter.Write(lbl.Location.Y)
+                binWriter.Write(lbl.Width)
+                binWriter.Write(lbl.Height)
+                binWriter.Write(lbl.MaximumSize.Width)
+                binWriter.Write(lbl.MaximumSize.Height)
+                binWriter.Write(lbl.MinimumSize.Width)
+                binWriter.Write(lbl.MinimumSize.Height)
+                binWriter.Write(lbl.Dock)
+                binWriter.Write(lbl.RightToLeft)
 
-        '                binWriter.Write(img.Location.X)
-        '                binWriter.Write(img.Location.Y)
-        '                binWriter.Write(img.Width)
-        '                binWriter.Write(img.Height)
-        '                binWriter.Write(img.MaximumSize.Width)
-        '                binWriter.Write(img.MaximumSize.Height)
-        '                binWriter.Write(img.MinimumSize.Width)
-        '                binWriter.Write(img.MinimumSize.Height)
-        '                binWriter.Write(img.Dock)
+                binWriter.Write(lbl.int(0))
+                binWriter.Write(lbl.int(1))
+                binWriter.Write(lbl.int(2))
+                binWriter.Write(lbl.int(3))
+                binWriter.Write(lbl.int(4))
+                binWriter.Write(lbl.int(5))
 
-        '                If File.Exists(img.ActionFile) = True Then
-        '                    binWriter.Write(True)
-        '                    binWriter.Write(img.ActionFile)
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+                binWriter.Write(lbl.bn(0))
+                binWriter.Write(lbl.bn(1))
+                binWriter.Write(lbl.bn(2))
+                binWriter.Write(lbl.bn(3))
+                binWriter.Write(lbl.bn(4))
 
-        '                If img.b1 = True Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        File.Copy(img.CursorFile, ProjectPath + "\" + tmpString)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                        binWriter.Write(1)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                    binWriter.Write(GetCursor(img.Cursor))
-        '                End If
+                binWriter.Write(lbl.st(0))
+                binWriter.Write(lbl.st(1))
 
-        '                If Not img.BackgroundImage Is Nothing Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        img.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+                If lbl.b1 = True Then
+                    Try
+                        tmpString = GetRandomName()
+                        File.Copy(lbl.CursorFile, ProjectPath + "\" + tmpString)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                        binWriter.Write(1)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                    binWriter.Write(GetCursor(lbl.Cursor))
+                End If
 
-        '                If Not img.Image Is Nothing Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        img.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+                If Not lbl.Image Is Nothing Then
+                    Try
+                        tmpString = GetRandomName()
+                        lbl.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                End If
 
-        '            ElseIf TypeOf c Is Panel Then
-        '                Pan = c
+            ElseIf TypeOf c Is PictureBox Then
+                img = c
 
-        '                binWriter.Write(4)
-        '                binWriter.Write(Pan.Name)
-        '                binWriter.Write(Pan.BackgroundImageLayout)
-        '                binWriter.Write(Pan.BorderStyle)
-        '                binWriter.Write(Pan.BackColor.ToArgb)
-        '                binWriter.Write(Pan.UseWaitCursor)
+                binWriter.Write(3)
+                binWriter.Write(img.Name)
+                binWriter.Write(img.BackColor.ToArgb)
+                binWriter.Write(img.BackgroundImageLayout)
+                If img.ImageLocation IsNot Nothing Then
+                    binWriter.Write(True)
+                    binWriter.Write(img.ImageLocation)
+                Else
+                    binWriter.Write(False)
+                End If
+                binWriter.Write(img.SizeMode)
+                binWriter.Write(img.UseWaitCursor)
+                binWriter.Write(img.WaitOnLoad)
 
-        '                binWriter.Write(Pan.AutoSize)
-        '                binWriter.Write(Pan.TabStop)
-        '                binWriter.Write(Pan.TabIndex)
-        '                binWriter.Write(Pan.Width)
-        '                binWriter.Write(Pan.Height)
-        '                binWriter.Write(Pan.Location.X)
-        '                binWriter.Write(Pan.Location.Y)
-        '                binWriter.Write(Pan.MaximumSize.Width)
-        '                binWriter.Write(Pan.MaximumSize.Height)
-        '                binWriter.Write(Pan.MinimumSize.Width)
-        '                binWriter.Write(Pan.MinimumSize.Height)
-        '                binWriter.Write(Pan.Dock)
+                binWriter.Write(img.Location.X)
+                binWriter.Write(img.Location.Y)
+                binWriter.Write(img.Width)
+                binWriter.Write(img.Height)
+                binWriter.Write(img.MaximumSize.Width)
+                binWriter.Write(img.MaximumSize.Height)
+                binWriter.Write(img.MinimumSize.Width)
+                binWriter.Write(img.MinimumSize.Height)
+                binWriter.Write(img.Dock)
 
-        '                If File.Exists(Pan.ActionFile) = True Then
-        '                    binWriter.Write(True)
-        '                    binWriter.Write(Pan.ActionFile)
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+                binWriter.Write(img.int(0))
+                binWriter.Write(img.int(1))
+                binWriter.Write(img.int(2))
+                binWriter.Write(img.int(3))
+                binWriter.Write(img.int(4))
+                binWriter.Write(img.int(5))
 
-        '                If Pan.b1 = True Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        File.Copy(Pan.CursorFile, ProjectPath + "\" + tmpString)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                        binWriter.Write(1)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                    binWriter.Write(GetCursor(Pan.Cursor))
-        '                End If
+                binWriter.Write(img.bn(0))
+                binWriter.Write(img.bn(1))
+                binWriter.Write(img.bn(2))
+                binWriter.Write(img.bn(3))
+                binWriter.Write(img.bn(4))
 
-        '                If Not Pan.BackgroundImage Is Nothing Then
-        '                    Try
-        '                        tmpString = GetRandomName()
-        '                        Pan.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-        '                        binWriter.Write(True)
-        '                        binWriter.Write(tmpString)
-        '                    Catch ex As Exception
-        '                        binWriter.Write(False)
-        '                    End Try
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+                binWriter.Write(img.st(0))
+                binWriter.Write(img.st(1))
 
-        '                If Pan.Controls.Count > 0 Then
-        '                    binWriter.Write(True)
-        '                    tmpString = GetRandomName()
-        '                    WriteControls(Pan, ProjectPath + "\" + tmpString + ".dat")
-        '                    binWriter.Write(tmpString)
-        '                Else
-        '                    binWriter.Write(False)
-        '                End If
+                If img.b1 = True Then
+                    Try
+                        tmpString = GetRandomName()
+                        File.Copy(img.CursorFile, ProjectPath + "\" + tmpString)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                        binWriter.Write(1)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                    binWriter.Write(GetCursor(img.Cursor))
+                End If
 
-        '            End If
-        '        Next
-        'en:
-        '        binWriter.Dispose()
+                If Not img.BackgroundImage Is Nothing Then
+                    Try
+                        tmpString = GetRandomName()
+                        img.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                End If
+
+                If Not img.Image Is Nothing Then
+                    Try
+                        tmpString = GetRandomName()
+                        img.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                End If
+            ElseIf TypeOf c Is TextBox Then
+                Tex = c
+                binWriter.Write(4)
+
+                binWriter.Write(Tex.Name)
+                binWriter.Write(Tex.Text)
+                binWriter.Write(Tex.BackColor.ToArgb)
+                binWriter.Write(Tex.BorderStyle)
+                binWriter.Write(Tex.Font.Name)
+                binWriter.Write(Tex.Font.Size)
+                binWriter.Write(Tex.Font.Style)
+                binWriter.Write(Tex.Font.Unit)
+                binWriter.Write(Tex.ForeColor.ToArgb)
+                binWriter.Write(Tex.TextAlign)
+                binWriter.Write(Tex.Multiline)
+                binWriter.Write(Tex.ReadOnly)
+                binWriter.Write(Tex.WordWrap)
+                binWriter.Write(Tex.UseWaitCursor)
+                binWriter.Write(Tex.TabStop)
+                binWriter.Write(Tex.TabIndex)
+                binWriter.Write(Tex.Location.X)
+                binWriter.Write(Tex.Location.Y)
+                binWriter.Write(Tex.Width)
+                binWriter.Write(Tex.Height)
+                binWriter.Write(Tex.MinimumSize.Width)
+                binWriter.Write(Tex.MinimumSize.Height)
+                binWriter.Write(Tex.MaximumSize.Width)
+                binWriter.Write(Tex.MaximumSize.Height)
+                binWriter.Write(Tex.Dock)
+                binWriter.Write(Tex.RightToLeft)
+
+                If Tex.b1 = True Then
+                    Try
+                        tmpString = GetRandomName()
+                        File.Copy(Tex.CursorFile, ProjectPath + "\" + tmpString)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                        binWriter.Write(1)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                    binWriter.Write(GetCursor(Tex.Cursor))
+                End If
+
+            ElseIf TypeOf c Is Panel Then
+                Pan = c
+
+                binWriter.Write(5)
+                binWriter.Write(Pan.Name)
+                binWriter.Write(Pan.BackgroundImageLayout)
+                binWriter.Write(Pan.BorderStyle)
+                binWriter.Write(Pan.BackColor.ToArgb)
+                binWriter.Write(Pan.UseWaitCursor)
+
+                binWriter.Write(Pan.AutoSize)
+                binWriter.Write(Pan.TabStop)
+                binWriter.Write(Pan.TabIndex)
+                binWriter.Write(Pan.Width)
+                binWriter.Write(Pan.Height)
+                binWriter.Write(Pan.Location.X)
+                binWriter.Write(Pan.Location.Y)
+                binWriter.Write(Pan.MaximumSize.Width)
+                binWriter.Write(Pan.MaximumSize.Height)
+                binWriter.Write(Pan.MinimumSize.Width)
+                binWriter.Write(Pan.MinimumSize.Height)
+                binWriter.Write(Pan.Dock)
+
+                binWriter.Write(Pan.int(0))
+                binWriter.Write(Pan.int(1))
+                binWriter.Write(Pan.int(2))
+                binWriter.Write(Pan.int(3))
+                binWriter.Write(Pan.int(4))
+                binWriter.Write(Pan.int(5))
+
+                binWriter.Write(Pan.bn(0))
+                binWriter.Write(Pan.bn(1))
+                binWriter.Write(Pan.bn(2))
+                binWriter.Write(Pan.bn(3))
+                binWriter.Write(Pan.bn(4))
+
+                binWriter.Write(Pan.st(0))
+                binWriter.Write(Pan.st(1))
+
+                If Pan.b1 = True Then
+                    Try
+                        tmpString = GetRandomName()
+                        File.Copy(Pan.CursorFile, ProjectPath + "\" + tmpString)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                        binWriter.Write(1)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                    binWriter.Write(GetCursor(Pan.Cursor))
+                End If
+
+                If Not Pan.BackgroundImage Is Nothing Then
+                    Try
+                        tmpString = GetRandomName()
+                        Pan.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                    End Try
+                Else
+                    binWriter.Write(False)
+                End If
+
+                If Pan.Controls.Count > 0 Then
+                    binWriter.Write(True)
+                    tmpString = GetRandomName()
+                    tmpString = tmpString + Pan.Name
+                    binWriter.Write(tmpString)
+                    WriteControls(Pan, ProjectPath + "\" + tmpString + ".dat")
+                Else
+                    binWriter.Write(False)
+                End If
+
+            End If
+        Next
+en:
+            binWriter.Dispose()
 
     End Sub
 
     Sub ReadControls(ByVal Path As String, ByVal Contain As Control)
-        '   ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        '   '########################################################################
-        '   ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        '   Dim binReader As New BinaryReader( _
-        'File.Open(Path, FileMode.Open))
-        '   binReader.BaseStream.Seek(0, SeekOrigin.Begin)
+        Dim binReader As New BinaryReader( _
+     File.Open(Path, FileMode.Open))
+        binReader.BaseStream.Seek(0, SeekOrigin.Begin)
 
-        '   Dim tmpInteger, tmpInteger2 As Integer
+        Dim NoOfControls, ControlIndex As Integer
 
-        '   tmpInteger = binReader.ReadInt32
+        NoOfControls = binReader.ReadInt32
 
-        '   For vt As Integer = 1 To tmpInteger
-        '       tmpInteger2 = binReader.ReadInt32
+        For vt As Integer = 1 To NoOfControls
+            ControlIndex = binReader.ReadInt32
 
-        '       If tmpInteger2 = 0 Then
-        '           btn = New vButton
+            If ControlIndex = 0 Then
+                btn = New vButton
 
-        '           btn.Text = binReader.ReadString
-        '           btn.BackColor = Color.FromArgb(binReader.ReadInt32)
-        '           btn.Name = binReader.ReadString
-        '           btn.BackgroundImageLayout = binReader.ReadInt32
-        '           btn.FlatAppearance.BorderColor = Color.FromArgb(binReader.ReadInt32)
-        '           btn.FlatAppearance.BorderSize = binReader.ReadInt32
-        '           btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(binReader.ReadInt32)
-        '           btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(binReader.ReadInt32)
-        '           btn.FlatStyle = binReader.ReadInt32
-        '           btn.Font = New Font(binReader.ReadString, binReader.ReadSingle, binReader.ReadInt32, binReader.ReadInt32)
-        '           btn.ForeColor = Color.FromArgb(binReader.ReadInt32)
-        '           btn.ImageAlign = SetImgAlign(binReader.ReadInt32)
-        '           btn.TextAlign = SetImgAlign(binReader.ReadInt32)
+                btn.Text = binReader.ReadString
+                btn.BackColor = Color.FromArgb(binReader.ReadInt32)
+                btn.Name = binReader.ReadString
+                btn.BackgroundImageLayout = binReader.ReadInt32
+                btn.FlatAppearance.BorderColor = Color.FromArgb(binReader.ReadInt32)
+                btn.FlatAppearance.BorderSize = binReader.ReadInt32
+                btn.FlatAppearance.MouseDownBackColor = Color.FromArgb(binReader.ReadInt32)
+                btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(binReader.ReadInt32)
+                btn.FlatStyle = binReader.ReadInt32
+                btn.Font = New Font(binReader.ReadString, binReader.ReadSingle, binReader.ReadInt32, binReader.ReadInt32)
+                btn.ForeColor = Color.FromArgb(binReader.ReadInt32)
+                btn.ImageAlign = SetImgAlign(binReader.ReadInt32)
+                btn.TextAlign = SetImgAlign(binReader.ReadInt32)
 
-        '           If binReader.ReadInt32 = 0 Then
-        '               btn.TextImageRelation = TextImageRelation.Overlay
-        '           ElseIf 1 Then
-        '               btn.TextImageRelation = TextImageRelation.ImageBeforeText
-        '           ElseIf 2 Then
-        '               btn.TextImageRelation = TextImageRelation.TextBeforeImage
-        '           ElseIf 3 Then
-        '               btn.TextImageRelation = TextImageRelation.ImageAboveText
-        '           ElseIf 4 Then
-        '               btn.TextImageRelation = TextImageRelation.TextAboveImage
-        '           End If
+                If binReader.ReadInt32 = 0 Then
+                    btn.TextImageRelation = TextImageRelation.Overlay
+                ElseIf 1 Then
+                    btn.TextImageRelation = TextImageRelation.ImageBeforeText
+                ElseIf 2 Then
+                    btn.TextImageRelation = TextImageRelation.TextBeforeImage
+                ElseIf 3 Then
+                    btn.TextImageRelation = TextImageRelation.ImageAboveText
+                ElseIf 4 Then
+                    btn.TextImageRelation = TextImageRelation.TextAboveImage
+                End If
 
-        '           btn.UseMnemonic = binReader.ReadBoolean
-        '           btn.UseVisualStyleBackColor = binReader.ReadBoolean
-        '           btn.UseWaitCursor = binReader.ReadBoolean
-        '           btn.AutoSize = binReader.ReadBoolean
-        '           btn.TabStop = binReader.ReadBoolean
-        '           btn.TabIndex = binReader.ReadInt32
-        '           btn.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           btn.Width = binReader.ReadInt32
-        '           btn.Height = binReader.ReadInt32
-        '           btn.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           btn.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           btn.Dock = binReader.ReadInt32
-        '           btn.RightToLeft = binReader.ReadInt32
+                btn.UseMnemonic = binReader.ReadBoolean
+                btn.UseVisualStyleBackColor = binReader.ReadBoolean
+                btn.UseWaitCursor = binReader.ReadBoolean
+                btn.AutoSize = binReader.ReadBoolean
+                btn.TabStop = binReader.ReadBoolean
+                btn.TabIndex = binReader.ReadInt32
+                btn.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                btn.Width = binReader.ReadInt32
+                btn.Height = binReader.ReadInt32
+                btn.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                btn.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                btn.Dock = binReader.ReadInt32
+                btn.RightToLeft = binReader.ReadInt32
 
-        '           If binReader.ReadBoolean = True Then
+                btn.int(0) = binReader.ReadInt32
+                btn.int(1) = binReader.ReadInt32
+                btn.int(2) = binReader.ReadInt32
+                btn.int(3) = binReader.ReadInt32
+                btn.int(4) = binReader.ReadInt32
+                btn.int(5) = binReader.ReadInt32
 
-        '           End If
+                btn.bn(0) = binReader.ReadBoolean
+                btn.bn(1) = binReader.ReadBoolean
+                btn.bn(2) = binReader.ReadBoolean
+                btn.bn(3) = binReader.ReadBoolean
+                btn.bn(4) = binReader.ReadBoolean
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   btn.CursorFile = Path + binReader.ReadString
-        '                   btn.Cursor = New Cursor(btn.CursorFile)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.ToString, MsgBoxStyle.Critical, "Error !")
-        '                   btn.Cursor = Cursors.Arrow
-        '               End Try
-        '           Else
-        '               SetCursor(binReader.ReadInt32)
-        '           End If
-
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   btn.BImage = Path + binReader.ReadString
-        '                   btn.BackgroundImage = Image.FromFile(btn.BImage)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '               End Try
-        '           End If
-
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   btn.ImageFile = Path + binReader.ReadString
-        '                   btn.Image = Image.FromFile(btn.ImageFile)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '               End Try
-        '           End If
-
-        '           ''''''''''''''''''''''
-        '           AddHandler ContextMenuS.Opening, AddressOf cms_Opening
-        '           ContextMenuS.AutoSize = False
-        '           ContextMenuS.Size = New Point(100, 70)
-        '           ContextMenuS.ShowImageMargin = True
-        '           Dim DrpDwnItem As New ToolStripMenuItem
-        '           btn.ContextMenuStrip = ContextMenuS
-        '           btn.Tag = False
-        '           AddHandler btn.Click, AddressOf cntrlDelete
-        '           AddHandler btn.MouseMove, AddressOf CntrlLocChange1MV
-        '           AddHandler btn.MouseDown, AddressOf CntrlLocChange2MD
-        '           AddHandler btn.KeyDown, AddressOf DKeyDown
-        '           AddHandler btn.KeyUp, AddressOf DKeyUp
-        '           DrpDwnItem.Name = btn.Name + "Drp"
-        '           DrpDwnItem.Text = btn.Text
-        '           DrpDwnItem.Tag = btn
-        '           AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
-        '           DropDownList.Items.Add(DrpDwnItem)
-        '           DrpDwnControls.DropDown = DropDownList
-        '           Contain.Controls.Add(btn)
-        '           '''''''''''''''''''''
-
-        '       ElseIf tmpInteger2 = 1 Then
-        '           lblL = New vLinkLabel
-
-        '           lblL.Text = binReader.ReadString
-        '           lblL.ImageAlign = SetImgAlign(binReader.ReadInt32)
-        '           lblL.Name = binReader.ReadString
-        '           lblL.TextAlign = SetImgAlign(binReader.ReadInt32)
-        '           lblL.ForeColor = Color.FromArgb(binReader.ReadInt32)
-        '           lblL.BackColor = Color.FromArgb(binReader.ReadInt32)
-        '           lblL.ActiveLinkColor = Color.FromArgb(binReader.ReadInt32)
-        '           lblL.VisitedLinkColor = Color.FromArgb(binReader.ReadInt32)
-        '           lblL.LinkColor = Color.FromArgb(binReader.ReadInt32)
-        '           lblL.DisabledLinkColor = Color.FromArgb(binReader.ReadInt32)
-        '           lblL.LinkBehavior = binReader.ReadInt32
-        '           lblL.LinkVisited = binReader.ReadBoolean
-        '           lblL.Font = New Font(binReader.ReadString, binReader.ReadSingle, binReader.ReadInt32, binReader.ReadInt32)
-
-        '           lblL.UseMnemonic = binReader.ReadBoolean
-        '           lblL.UseWaitCursor = binReader.ReadBoolean
-        '           lblL.AutoSize = binReader.ReadBoolean
-        '           lblL.TabStop = binReader.ReadBoolean
-        '           lblL.TabIndex = binReader.ReadInt32
-        '           lblL.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           lblL.Width = binReader.ReadInt32
-        '           lblL.Height = binReader.ReadInt32
-        '           lblL.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           lblL.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           lblL.LinkArea = New System.Windows.Forms.LinkArea(binReader.ReadInt32, binReader.ReadInt32)
-        '           lblL.Dock = binReader.ReadInt32
-        '           lblL.RightToLeft = binReader.ReadInt32
-
-        '           lblL.chk1 = binReader.ReadBoolean
-        '           lblL.chk2 = binReader.ReadBoolean
-        '           lblL.Cmbx1 = binReader.ReadInt32
-        '           lblL.Cmbx2 = binReader.ReadInt32
-        '           lblL.Cmbx3 = binReader.ReadInt32
-        '           lblL.text1 = binReader.ReadString
-        '           lblL.text2 = binReader.ReadString
+                btn.st(0) = binReader.ReadString
+                btn.st(1) = binReader.ReadString
 
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   lblL.CursorFile = binReader.ReadString
-        '                   lblL.Cursor = New Cursor(Path + lblL.CursorFile)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '                   lblL.Cursor = Cursors.Arrow
-        '               End Try
-        '           Else
-        '               lblL.Cursor = SetCursor(binReader.ReadUInt32)
-        '           End If
+                If binReader.ReadBoolean = True Then
+                    Try
+                        btn.CursorFile = ProjectPath + binReader.ReadString
+                        btn.Cursor = New Cursor(btn.CursorFile)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                        btn.Cursor = Cursors.Arrow
+                    End Try
+                Else
+                    SetCursor(binReader.ReadInt32)
+                End If
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   lblL.ImageFile = binReader.ReadString
-        '                   lblL.Image = Image.FromFile(Path + lblL.ImageFile)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '               End Try
-        '           End If
+                If binReader.ReadBoolean = True Then
+                    Try
+                        btn.BackgroundImage = Image.FromFile(ProjectPath + binReader.ReadString)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                End If
+
+                If binReader.ReadBoolean = True Then
+                    Try
+                        btn.Image = Image.FromFile(ProjectPath + binReader.ReadString)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                End If
+
+                ''''''''''''''''''''''
+                AddHandler ContextMenuS.Opening, AddressOf cms_Opening
+                ContextMenuS.AutoSize = False
+                ContextMenuS.Size = New Point(100, 70)
+                ContextMenuS.ShowImageMargin = True
+                Dim DrpDwnItem As New ToolStripMenuItem
+                btn.ContextMenuStrip = ContextMenuS
+                btn.Tag = False
+                AddHandler btn.Click, AddressOf cntrlDelete
+                AddHandler btn.MouseMove, AddressOf CntrlLocChange1MV
+                AddHandler btn.MouseDown, AddressOf CntrlLocChange2MD
+                AddHandler btn.KeyDown, AddressOf DKeyDown
+                AddHandler btn.KeyUp, AddressOf DKeyUp
+                DrpDwnItem.Name = btn.Name + "Drp"
+                DrpDwnItem.Text = btn.Text
+                DrpDwnItem.Tag = btn
+                AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
+                DropDownList.Items.Add(DrpDwnItem)
+                DrpDwnControls.DropDown = DropDownList
+                Contain.Controls.Add(btn)
+                '''''''''''''''''''''
+
+            ElseIf ControlIndex = 1 Then
+                lblL = New vLinkLabel
+
+                lblL.Text = binReader.ReadString
+                lblL.ImageAlign = SetImgAlign(binReader.ReadInt32)
+                lblL.Name = binReader.ReadString
+                lblL.TextAlign = SetImgAlign(binReader.ReadInt32)
+                lblL.ForeColor = Color.FromArgb(binReader.ReadInt32)
+                lblL.BackColor = Color.FromArgb(binReader.ReadInt32)
+                lblL.ActiveLinkColor = Color.FromArgb(binReader.ReadInt32)
+                lblL.VisitedLinkColor = Color.FromArgb(binReader.ReadInt32)
+                lblL.LinkColor = Color.FromArgb(binReader.ReadInt32)
+                lblL.DisabledLinkColor = Color.FromArgb(binReader.ReadInt32)
+                lblL.LinkBehavior = binReader.ReadInt32
+                lblL.LinkVisited = binReader.ReadBoolean
+                lblL.Font = New Font(binReader.ReadString, binReader.ReadSingle, binReader.ReadInt32, binReader.ReadInt32)
+
+                lblL.UseMnemonic = binReader.ReadBoolean
+                lblL.UseWaitCursor = binReader.ReadBoolean
+                lblL.AutoSize = binReader.ReadBoolean
+                lblL.TabStop = binReader.ReadBoolean
+                lblL.TabIndex = binReader.ReadInt32
+                lblL.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                lblL.Width = binReader.ReadInt32
+                lblL.Height = binReader.ReadInt32
+                lblL.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                lblL.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                lblL.LinkArea = New System.Windows.Forms.LinkArea(binReader.ReadInt32, binReader.ReadInt32)
+                lblL.Dock = binReader.ReadInt32
+                lblL.RightToLeft = binReader.ReadInt32
+
+                lblL.int(0) = binReader.ReadInt32
+                lblL.int(1) = binReader.ReadInt32
+                lblL.int(2) = binReader.ReadInt32
+                lblL.int(3) = binReader.ReadInt32
+                lblL.int(4) = binReader.ReadInt32
+                lblL.int(5) = binReader.ReadInt32
+
+                lblL.bn(0) = binReader.ReadBoolean
+                lblL.bn(1) = binReader.ReadBoolean
+                lblL.bn(2) = binReader.ReadBoolean
+                lblL.bn(3) = binReader.ReadBoolean
+                lblL.bn(4) = binReader.ReadBoolean
+
+                lblL.st(0) = binReader.ReadString
+                lblL.st(1) = binReader.ReadString
+
+                If binReader.ReadBoolean = True Then
+                    Try
+                        lblL.CursorFile = binReader.ReadString
+                        lblL.Cursor = New Cursor(ProjectPath + lblL.CursorFile)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                        lblL.Cursor = Cursors.Arrow
+                    End Try
+                Else
+                    lblL.Cursor = SetCursor(binReader.ReadUInt32)
+                End If
+
+                If binReader.ReadBoolean = True Then
+                    Try
+                        lblL.Image = Image.FromFile(ProjectPath + binReader.ReadString)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                End If
 
 
-        '           ''''''''''''''''''''''
-        '           AddHandler ContextMenuS.Opening, AddressOf cms_Opening
-        '           ContextMenuS.AutoSize = False
-        '           ContextMenuS.Size = New Point(100, 70)
-        '           ContextMenuS.ShowImageMargin = True
-        '           Dim DrpDwnItem As New ToolStripMenuItem
-        '           lblL.ContextMenuStrip = ContextMenuS
-        '           lblL.Tag = False
-        '           AddHandler lblL.Click, AddressOf cntrlDelete
-        '           AddHandler lblL.MouseMove, AddressOf CntrlLocChange1MV
-        '           AddHandler lblL.MouseDown, AddressOf CntrlLocChange2MD
-        '           AddHandler lblL.KeyDown, AddressOf DKeyDown
-        '           AddHandler lblL.KeyUp, AddressOf DKeyUp
-        '           DrpDwnItem.Name = lblL.Name + "Drp"
-        '           DrpDwnItem.Text = lblL.Text
-        '           DrpDwnItem.Tag = lblL
-        '           AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
-        '           DropDownList.Items.Add(DrpDwnItem)
-        '           DrpDwnControls.DropDown = DropDownList
-        '           Contain.Controls.Add(lblL)
-        '           '''''''''''''''''''''
-        '       ElseIf tmpInteger2 = 2 Then
-        '           lbl = New vLabel
+                ''''''''''''''''''''''
+                AddHandler ContextMenuS.Opening, AddressOf cms_Opening
+                ContextMenuS.AutoSize = False
+                ContextMenuS.Size = New Point(100, 70)
+                ContextMenuS.ShowImageMargin = True
+                Dim DrpDwnItem As New ToolStripMenuItem
+                lblL.ContextMenuStrip = ContextMenuS
+                lblL.Tag = False
+                AddHandler lblL.Click, AddressOf cntrlDelete
+                AddHandler lblL.MouseMove, AddressOf CntrlLocChange1MV
+                AddHandler lblL.MouseDown, AddressOf CntrlLocChange2MD
+                AddHandler lblL.KeyDown, AddressOf DKeyDown
+                AddHandler lblL.KeyUp, AddressOf DKeyUp
+                DrpDwnItem.Name = lblL.Name + "Drp"
+                DrpDwnItem.Text = lblL.Text
+                DrpDwnItem.Tag = lblL
+                AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
+                DropDownList.Items.Add(DrpDwnItem)
+                DrpDwnControls.DropDown = DropDownList
+                Contain.Controls.Add(lblL)
+                '''''''''''''''''''''
+            ElseIf ControlIndex = 2 Then
+                lbl = New vLabel
 
-        '           lbl.Text = binReader.ReadString
-        '           lbl.BorderStyle = binReader.ReadInt32
-        '           lbl.Name = binReader.ReadString
-        '           lbl.Font = New Font(binReader.ReadString, binReader.ReadSingle, binReader.ReadInt32, binReader.ReadInt32)
-        '           lbl.FlatStyle = binReader.ReadInt32
-        '           lbl.ImageAlign = SetImgAlign(binReader.ReadInt32)
-        '           lbl.TextAlign = SetImgAlign(binReader.ReadInt32)
-        '           lbl.ForeColor = Color.FromArgb(binReader.ReadInt32)
-        '           lbl.BackColor = Color.FromArgb(binReader.ReadInt32)
-        '           lbl.UseMnemonic = binReader.ReadBoolean
-        '           lbl.UseWaitCursor = binReader.ReadBoolean
-        '           lbl.AutoSize = binReader.ReadBoolean
-        '           lbl.TabIndex = binReader.ReadInt32
-        '           lbl.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           lbl.Width = binReader.ReadInt32
-        '           lbl.Height = binReader.ReadInt32
-        '           lbl.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           lbl.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           lbl.Dock = binReader.ReadInt32
-        '           lbl.RightToLeft = binReader.ReadInt32
+                lbl.Text = binReader.ReadString
+                lbl.BorderStyle = binReader.ReadInt32
+                lbl.Name = binReader.ReadString
+                lbl.Font = New Font(binReader.ReadString, binReader.ReadSingle, binReader.ReadInt32, binReader.ReadInt32)
+                lbl.FlatStyle = binReader.ReadInt32
+                lbl.ImageAlign = SetImgAlign(binReader.ReadInt32)
+                lbl.TextAlign = SetImgAlign(binReader.ReadInt32)
+                lbl.ForeColor = Color.FromArgb(binReader.ReadInt32)
+                lbl.BackColor = Color.FromArgb(binReader.ReadInt32)
+                lbl.UseMnemonic = binReader.ReadBoolean
+                lbl.UseWaitCursor = binReader.ReadBoolean
+                lbl.AutoSize = binReader.ReadBoolean
+                lbl.TabIndex = binReader.ReadInt32
+                lbl.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                lbl.Width = binReader.ReadInt32
+                lbl.Height = binReader.ReadInt32
+                lbl.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                lbl.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                lbl.Dock = binReader.ReadInt32
+                lbl.RightToLeft = binReader.ReadInt32
 
-        '           lbl.chk1 = binReader.ReadBoolean
-        '           lbl.chk2 = binReader.ReadBoolean
-        '           lbl.Cmbx1 = binReader.ReadInt32
-        '           lbl.Cmbx2 = binReader.ReadInt32
-        '           lbl.Cmbx3 = binReader.ReadInt32
-        '           lbl.text1 = binReader.ReadString
-        '           lbl.text2 = binReader.ReadString
+                lbl.int(0) = binReader.ReadInt32
+                lbl.int(1) = binReader.ReadInt32
+                lbl.int(2) = binReader.ReadInt32
+                lbl.int(3) = binReader.ReadInt32
+                lbl.int(4) = binReader.ReadInt32
+                lbl.int(5) = binReader.ReadInt32
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   lbl.CursorFile = binReader.ReadString
-        '                   lbl.Cursor = New Cursor(Path + lbl.CursorFile)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '               End Try
-        '           Else
-        '               lbl.Cursor = SetCursor(binReader.ReadInt32)
-        '           End If
+                lbl.bn(0) = binReader.ReadBoolean
+                lbl.bn(1) = binReader.ReadBoolean
+                lbl.bn(2) = binReader.ReadBoolean
+                lbl.bn(3) = binReader.ReadBoolean
+                lbl.bn(4) = binReader.ReadBoolean
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   lbl.ImageFile = binReader.ReadString
-        '                   lbl.Image = Image.FromFile(Path + lbl.ImageFile)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '               End Try
-        '           End If
+                lbl.st(0) = binReader.ReadString
+                lbl.st(1) = binReader.ReadString
 
-        '           ''''''''''''''''''''''
-        '           AddHandler ContextMenuS.Opening, AddressOf cms_Opening
-        '           ContextMenuS.AutoSize = False
-        '           ContextMenuS.Size = New Point(100, 70)
-        '           ContextMenuS.ShowImageMargin = True
-        '           Dim DrpDwnItem As New ToolStripMenuItem
-        '           lbl.ContextMenuStrip = ContextMenuS
-        '           lbl.Tag = False
-        '           AddHandler lbl.Click, AddressOf cntrlDelete
-        '           AddHandler lbl.MouseMove, AddressOf CntrlLocChange1MV
-        '           AddHandler lbl.MouseDown, AddressOf CntrlLocChange2MD
-        '           AddHandler lbl.KeyDown, AddressOf DKeyDown
-        '           AddHandler lbl.KeyUp, AddressOf DKeyUp
-        '           DrpDwnItem.Name = lbl.Name + "Drp"
-        '           DrpDwnItem.Text = lbl.Text
-        '           DrpDwnItem.Tag = lbl
-        '           AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
-        '           DropDownList.Items.Add(DrpDwnItem)
-        '           DrpDwnControls.DropDown = DropDownList
-        '           Contain.Controls.Add(lbl)
-        '           '''''''''''''''''''''
 
-        '       ElseIf tmpInteger2 = 3 Then
-        '           img = New vImage
+                If binReader.ReadBoolean = True Then
+                    Try
+                        lbl.CursorFile = binReader.ReadString
+                        lbl.Cursor = New Cursor(ProjectPath + lbl.CursorFile)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                Else
+                    lbl.Cursor = SetCursor(binReader.ReadInt32)
+                End If
 
-        '           img.Name = binReader.ReadString
-        '           img.BackColor = Color.FromArgb(binReader.ReadInt32)
-        '           img.BackgroundImageLayout = binReader.ReadInt32
+                If binReader.ReadBoolean = True Then
+                    Try
+                        lbl.Image = Image.FromFile(ProjectPath + binReader.ReadString)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                End If
 
-        '           If binReader.ReadBoolean = True Then
-        '               img.ImageLocation = binReader.ReadString
-        '           Else
+                ''''''''''''''''''''''
+                AddHandler ContextMenuS.Opening, AddressOf cms_Opening
+                ContextMenuS.AutoSize = False
+                ContextMenuS.Size = New Point(100, 70)
+                ContextMenuS.ShowImageMargin = True
+                Dim DrpDwnItem As New ToolStripMenuItem
+                lbl.ContextMenuStrip = ContextMenuS
+                lbl.Tag = False
+                AddHandler lbl.Click, AddressOf cntrlDelete
+                AddHandler lbl.MouseMove, AddressOf CntrlLocChange1MV
+                AddHandler lbl.MouseDown, AddressOf CntrlLocChange2MD
+                AddHandler lbl.KeyDown, AddressOf DKeyDown
+                AddHandler lbl.KeyUp, AddressOf DKeyUp
+                DrpDwnItem.Name = lbl.Name + "Drp"
+                DrpDwnItem.Text = lbl.Text
+                DrpDwnItem.Tag = lbl
+                AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
+                DropDownList.Items.Add(DrpDwnItem)
+                DrpDwnControls.DropDown = DropDownList
+                Contain.Controls.Add(lbl)
+                '''''''''''''''''''''
 
-        '           End If
+            ElseIf ControlIndex = 3 Then
+                img = New vImage
 
-        '           img.SizeMode = binReader.ReadInt32
+                img.Name = binReader.ReadString
+                img.BackColor = Color.FromArgb(binReader.ReadInt32)
+                img.BackgroundImageLayout = binReader.ReadInt32
 
-        '           img.UseWaitCursor = binReader.ReadBoolean
-        '           img.WaitOnLoad = binReader.ReadBoolean
+                If binReader.ReadBoolean = True Then
+                    img.ImageLocation = binReader.ReadString
+                Else
 
-        '           img.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           img.Width = binReader.ReadInt32
-        '           img.Height = binReader.ReadInt32
-        '           img.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           img.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           img.Dock = binReader.ReadInt32
+                End If
 
-        '           img.chk1 = binReader.ReadBoolean
-        '           img.chk2 = binReader.ReadBoolean
-        '           img.Cmbx1 = binReader.ReadInt32
-        '           img.Cmbx2 = binReader.ReadInt32
-        '           img.Cmbx3 = binReader.ReadInt32
-        '           img.text1 = binReader.ReadString
-        '           img.text2 = binReader.ReadString
+                img.SizeMode = binReader.ReadInt32
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   img.CursorFile = binReader.ReadString
-        '                   img.Cursor = New Cursor(Path + img.CursorFile)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '               End Try
-        '           Else
-        '               img.Cursor = SetCursor(binReader.ReadInt32)
-        '           End If
+                img.UseWaitCursor = binReader.ReadBoolean
+                img.WaitOnLoad = binReader.ReadBoolean
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   img.BImage = binReader.ReadString
-        '                   img.BackgroundImage = Image.FromFile(Path + img.BImage)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '               End Try
-        '           End If
+                img.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                img.Width = binReader.ReadInt32
+                img.Height = binReader.ReadInt32
+                img.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                img.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                img.Dock = binReader.ReadInt32
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   img.ImageFile = binReader.ReadString
-        '                   img.Image = Image.FromFile(Path + img.ImageFile)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '               End Try
-        '           End If
+                img.int(0) = binReader.ReadInt32
+                img.int(1) = binReader.ReadInt32
+                img.int(2) = binReader.ReadInt32
+                img.int(3) = binReader.ReadInt32
+                img.int(4) = binReader.ReadInt32
+                img.int(5) = binReader.ReadInt32
 
-        '           ''''''''''''''''''''''
-        '           AddHandler ContextMenuS.Opening, AddressOf cms_Opening
-        '           ContextMenuS.AutoSize = False
-        '           ContextMenuS.Size = New Point(100, 70)
-        '           ContextMenuS.ShowImageMargin = True
-        '           Dim DrpDwnItem As New ToolStripMenuItem
-        '           img.ContextMenuStrip = ContextMenuS
-        '           img.Tag = False
-        '           AddHandler img.Click, AddressOf cntrlDelete
-        '           AddHandler img.MouseMove, AddressOf CntrlLocChange1MV
-        '           AddHandler img.MouseDown, AddressOf CntrlLocChange2MD
-        '           AddHandler img.KeyDown, AddressOf DKeyDown
-        '           AddHandler img.KeyUp, AddressOf DKeyUp
-        '           DrpDwnItem.Name = img.Name + "Drp"
-        '           DrpDwnItem.Text = img.Text
-        '           DrpDwnItem.Tag = img
-        '           AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
-        '           DropDownList.Items.Add(DrpDwnItem)
-        '           DrpDwnControls.DropDown = DropDownList
-        '           Contain.Controls.Add(img)
-        '           '''''''''''''''''''''
-        '       ElseIf tmpInteger2 = 4 Then
-        '           Pan = New vPanel
+                img.bn(0) = binReader.ReadBoolean
+                img.bn(1) = binReader.ReadBoolean
+                img.bn(2) = binReader.ReadBoolean
+                img.bn(3) = binReader.ReadBoolean
+                img.bn(4) = binReader.ReadBoolean
 
-        '           Pan.Name = binReader.ReadString
-        '           Pan.BackgroundImageLayout = binReader.ReadInt32
-        '           Pan.BorderStyle = binReader.ReadInt32
-        '           Pan.BackColor = Color.FromArgb(binReader.ReadInt32)
+                img.st(0) = binReader.ReadString
+                img.st(1) = binReader.ReadString
 
-        '           Pan.UseWaitCursor = binReader.ReadBoolean
-        '           Pan.AutoSize = binReader.ReadBoolean
-        '           Pan.TabStop = binReader.ReadBoolean
-        '           Pan.TabIndex = binReader.ReadInt32
-        '           Pan.Width = binReader.ReadInt32
-        '           Pan.Height = binReader.ReadInt32
-        '           Pan.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           Pan.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           Pan.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
-        '           Pan.Dock = binReader.ReadInt32
+                If binReader.ReadBoolean = True Then
+                    Try
+                        img.CursorFile = binReader.ReadString
+                        img.Cursor = New Cursor(ProjectPath + img.CursorFile)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                Else
+                    img.Cursor = SetCursor(binReader.ReadInt32)
+                End If
 
-        '           Pan.chk1 = binReader.ReadBoolean
-        '           Pan.chk2 = binReader.ReadBoolean
-        '           Pan.chk3 = binReader.ReadBoolean
-        '           Pan.Cmbx1 = binReader.ReadInt32
-        '           Pan.Cmbx2 = binReader.ReadInt32
-        '           Pan.Cmbx3 = binReader.ReadInt32
-        '           Pan.text1 = binReader.ReadString
-        '           Pan.text2 = binReader.ReadString
+                If binReader.ReadBoolean = True Then
+                    Try
+                        img.BackgroundImage = Image.FromFile(ProjectPath + binReader.ReadString)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                End If
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
-        '                   Pan.CursorFile = binReader.ReadString
-        '                   Pan.Cursor = New Cursor(Path + Pan.CursorFile)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '                   Pan.Cursor = Cursors.Arrow
-        '               End Try
-        '           Else
-        '               Pan.Cursor = SetCursor(binReader.ReadInt32)
-        '           End If
+                If binReader.ReadBoolean = True Then
+                    Try
+                        img.Image = Image.FromFile(ProjectPath + binReader.ReadString)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                End If
 
-        '           If binReader.ReadBoolean = True Then
-        '               Try
+                ''''''''''''''''''''''
+                AddHandler ContextMenuS.Opening, AddressOf cms_Opening
+                ContextMenuS.AutoSize = False
+                ContextMenuS.Size = New Point(100, 70)
+                ContextMenuS.ShowImageMargin = True
+                Dim DrpDwnItem As New ToolStripMenuItem
+                img.ContextMenuStrip = ContextMenuS
+                img.Tag = False
+                AddHandler img.Click, AddressOf cntrlDelete
+                AddHandler img.MouseMove, AddressOf CntrlLocChange1MV
+                AddHandler img.MouseDown, AddressOf CntrlLocChange2MD
+                AddHandler img.KeyDown, AddressOf DKeyDown
+                AddHandler img.KeyUp, AddressOf DKeyUp
+                DrpDwnItem.Name = img.Name + "Drp"
+                DrpDwnItem.Text = img.Text
+                DrpDwnItem.Tag = img
+                AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
+                DropDownList.Items.Add(DrpDwnItem)
+                DrpDwnControls.DropDown = DropDownList
+                Contain.Controls.Add(img)
+                '''''''''''''''''''''
+            ElseIf ControlIndex = 4 Then
+                Tex = New vTextBox
 
-        '                   Pan.BackgroundImage = Image.FromFile(Path + binReader.ReadString)
-        '               Catch ex As Exception
-        '                   MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
-        '               End Try
-        '           End If
+                Tex.Name = binReader.ReadString
+                Tex.Text = binReader.ReadString
+                Tex.BackColor = Color.FromArgb(binReader.ReadInt32)
+                Tex.BorderStyle = binReader.ReadInt32
+                Tex.Font = New Font(binReader.ReadString, binReader.ReadSingle, binReader.ReadInt32, binReader.ReadInt32)
+                Tex.ForeColor = Color.FromArgb(binReader.ReadInt32)
+                Tex.TextAlign = binReader.ReadInt32
+                Tex.Multiline = binReader.ReadBoolean
+                Tex.ReadOnly = binReader.ReadBoolean
+                Tex.WordWrap = binReader.ReadBoolean
+                Tex.UseWaitCursor = binReader.ReadBoolean
+                Tex.TabStop = binReader.ReadBoolean
+                Tex.TabIndex = binReader.ReadInt32
+                Tex.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                Tex.Width = binReader.ReadInt32
+                Tex.Height = binReader.ReadInt32
+                Tex.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                Tex.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                Tex.Dock = binReader.ReadInt32
+                Tex.RightToLeft = binReader.ReadInt32
 
-        '           ''''''''''''''''''''''
-        '           AddHandler ContextMenuS.Opening, AddressOf cms_Opening
-        '           ContextMenuS.AutoSize = False
-        '           ContextMenuS.Size = New Point(100, 70)
-        '           ContextMenuS.ShowImageMargin = True
-        '           Dim DrpDwnItem As New ToolStripMenuItem
-        '           Pan.ContextMenuStrip = ContextMenuS
-        '           Pan.Tag = False
-        '           AddHandler Pan.MouseDown, AddressOf ContrlAdd
-        '           AddHandler Pan.MouseMove, AddressOf CntrlLocChange1MV
-        '           AddHandler Pan.MouseDown, AddressOf CntrlLocChange2MD
-        '           AddHandler Pan.KeyDown, AddressOf DKeyDown
-        '           AddHandler Pan.KeyUp, AddressOf DKeyUp
-        '           DrpDwnItem.Name = Pan.Name + "Drp"
-        '           DrpDwnItem.Text = Pan.Text
-        '           DrpDwnItem.Tag = Pan
-        '           AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
-        '           DropDownList.Items.Add(DrpDwnItem)
-        '           DrpDwnControls.DropDown = DropDownList
-        '           Contain.Controls.Add(Pan)
-        '           '''''''''''''''''''''
+                If binReader.ReadBoolean = True Then
+                    Try
+                        Tex.CursorFile = binReader.ReadString
+                        Tex.Cursor = New Cursor(ProjectPath + Tex.CursorFile)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                Else
+                    Tex.Cursor = SetCursor(binReader.ReadInt32)
+                End If
 
-        '           If binReader.ReadBoolean = True Then
-        '               ReadControls(ProjectPath + binReader.ReadString + ".dat", Pan)
-        '           End If
-        '       End If
-        '   Next
-        '   binReader.Dispose()
+
+                ''''''''''''''''''''''
+                AddHandler ContextMenuS.Opening, AddressOf cms_Opening
+                ContextMenuS.AutoSize = False
+                ContextMenuS.Size = New Point(100, 70)
+                ContextMenuS.ShowImageMargin = True
+                Dim DrpDwnItem As New ToolStripMenuItem
+                Tex.ContextMenuStrip = ContextMenuS
+                Tex.Tag = False
+                AddHandler Tex.Click, AddressOf cntrlDelete
+                AddHandler Tex.MouseMove, AddressOf CntrlLocChange1MV
+                AddHandler Tex.MouseDown, AddressOf CntrlLocChange2MD
+                AddHandler Tex.KeyDown, AddressOf DKeyDown
+                AddHandler Tex.KeyUp, AddressOf DKeyUp
+                DrpDwnItem.Name = Tex.Name + "Drp"
+                DrpDwnItem.Text = Tex.Text
+                DrpDwnItem.Tag = Tex
+                AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
+                DropDownList.Items.Add(DrpDwnItem)
+                DrpDwnControls.DropDown = DropDownList
+                Contain.Controls.Add(Tex)
+                '''''''''''''''''''''
+
+            ElseIf ControlIndex = 5 Then
+                Pan = New vPanel
+
+                Pan.Name = binReader.ReadString
+                Pan.BackgroundImageLayout = binReader.ReadInt32
+                Pan.BorderStyle = binReader.ReadInt32
+                Pan.BackColor = Color.FromArgb(binReader.ReadInt32)
+
+                Pan.UseWaitCursor = binReader.ReadBoolean
+                Pan.AutoSize = binReader.ReadBoolean
+                Pan.TabStop = binReader.ReadBoolean
+                Pan.TabIndex = binReader.ReadInt32
+                Pan.Width = binReader.ReadInt32
+                Pan.Height = binReader.ReadInt32
+                Pan.Location = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                Pan.MaximumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                Pan.MinimumSize = New Size(binReader.ReadInt32, binReader.ReadInt32)
+                Pan.Dock = binReader.ReadInt32
+
+                Pan.int(0) = binReader.ReadInt32
+                Pan.int(1) = binReader.ReadInt32
+                Pan.int(2) = binReader.ReadInt32
+                Pan.int(3) = binReader.ReadInt32
+                Pan.int(4) = binReader.ReadInt32
+                Pan.int(5) = binReader.ReadInt32
+
+                Pan.bn(0) = binReader.ReadBoolean
+                Pan.bn(1) = binReader.ReadBoolean
+                Pan.bn(2) = binReader.ReadBoolean
+                Pan.bn(3) = binReader.ReadBoolean
+                Pan.bn(4) = binReader.ReadBoolean
+
+                Pan.st(0) = binReader.ReadString
+                Pan.st(1) = binReader.ReadString
+
+
+                If binReader.ReadBoolean = True Then
+                    Try
+                        Pan.CursorFile = binReader.ReadString
+                        Pan.Cursor = New Cursor(ProjectPath + Pan.CursorFile)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                        Pan.Cursor = Cursors.Arrow
+                    End Try
+                Else
+                    Pan.Cursor = SetCursor(binReader.ReadInt32)
+                End If
+
+                If binReader.ReadBoolean = True Then
+                    Try
+                        Pan.BackgroundImage = Image.FromFile(ProjectPath + binReader.ReadString)
+                    Catch ex As Exception
+                        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
+                    End Try
+                End If
+
+                ''''''''''''''''''''''
+                AddHandler ContextMenuS.Opening, AddressOf cms_Opening
+                ContextMenuS.AutoSize = False
+                ContextMenuS.Size = New Point(100, 70)
+                ContextMenuS.ShowImageMargin = True
+                Dim DrpDwnItem As New ToolStripMenuItem
+                Pan.ContextMenuStrip = ContextMenuS
+                Pan.Tag = False
+                AddHandler Pan.MouseDown, AddressOf ContrlAdd
+                AddHandler Pan.MouseMove, AddressOf CntrlLocChange1MV
+                AddHandler Pan.MouseDown, AddressOf CntrlLocChange2MD
+                AddHandler Pan.KeyDown, AddressOf DKeyDown
+                AddHandler Pan.KeyUp, AddressOf DKeyUp
+                DrpDwnItem.Name = Pan.Name + "Drp"
+                DrpDwnItem.Text = Pan.Text
+                DrpDwnItem.Tag = Pan
+                AddHandler DrpDwnItem.Click, AddressOf DrpDwnItm_Click
+                DropDownList.Items.Add(DrpDwnItem)
+                DrpDwnControls.DropDown = DropDownList
+                Contain.Controls.Add(Pan)
+                '''''''''''''''''''''
+
+                If binReader.ReadBoolean = True Then
+                    ReadControls(ProjectPath + binReader.ReadString + ".dat", Pan)
+                End If
+            End If
+        Next
+        binReader.Dispose()
+
     End Sub
 
 #End Region
@@ -2368,7 +2623,8 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
 
             Dim fi As New FileInfo(OpenFileDialog1.FileName)
 
-            ProjectPath = fi.DirectoryName
+            ProjectPath = fi.DirectoryName + "\"
+
 
             NewFrame.AutoSizeMode = binReader.ReadInt32
             NewFrame.BackgroundImageLayout = binReader.ReadInt32
@@ -2439,10 +2695,9 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
             m = binReader.ReadInt32
             n = binReader.ReadInt32
 
-
             If binReader.ReadBoolean = True Then
                 binReader.Dispose()
-                ReadControls(ProjectPath + "\" + "Controls.dat", NewFrame)
+                ReadControls(ProjectPath + "\Controls.dat", NewFrame)
             End If
 
             NewFrame.Location = New Size(0, 0)
@@ -3108,6 +3363,12 @@ en:
     End Sub
 
 #End Region
+
+    Private Sub lblProjectPath_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblProjectPath.MouseDown
+        If p = True Then
+            Process.Start(sender.Text)
+        End If
+    End Sub
 
 End Class
 
