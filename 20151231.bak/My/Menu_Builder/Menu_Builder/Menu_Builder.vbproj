@@ -100,11 +100,29 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog_FlatApp.Designer.vb">
+      <DependentUpon>Dialog_FlatApp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_FlatApp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrameProperties.Designer.vb">
+      <DependentUpon>FrameProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrameProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ImgFormat.Designer.vb">
       <DependentUpon>ImgFormat.vb</DependentUpon>
     </Compile>
     <Compile Include="ImgFormat.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pimg.designer.vb">
+      <DependentUpon>Pimg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pimg.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Ptxt.designer.vb">
       <DependentUpon>Ptxt.vb</DependentUpon>
@@ -130,12 +148,6 @@
     <Compile Include="Ppan.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pimg.designer.vb">
-      <DependentUpon>Pimg.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Pimg.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Pllbl.designer.vb">
       <DependentUpon>Pllbl.vb</DependentUpon>
     </Compile>
@@ -147,12 +159,6 @@
     </Compile>
     <Compile Include="Plbl.vb">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Dialog_FlatApp.Designer.vb">
-      <DependentUpon>Dialog_FlatApp.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Dialog_FlatApp.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="GVandF.vb" />
     <Compile Include="Main.Designer.vb">
@@ -191,16 +197,19 @@
     <Compile Include="vControls.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="FrameProperties.Designer.vb">
-      <DependentUpon>FrameProperties.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FrameProperties.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialog_FlatApp.resx">
+      <DependentUpon>Dialog_FlatApp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrameProperties.resx">
+      <DependentUpon>FrameProperties.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImgFormat.resx">
       <DependentUpon>ImgFormat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pimg.resx">
+      <DependentUpon>Pimg.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ptxt.resx">
       <DependentUpon>Ptxt.vb</DependentUpon>
@@ -214,17 +223,11 @@
     <EmbeddedResource Include="Ppan.resx">
       <DependentUpon>Ppan.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pimg.resx">
-      <DependentUpon>Pimg.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pllbl.resx">
       <DependentUpon>Pllbl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Plbl.resx">
       <DependentUpon>Plbl.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialog_FlatApp.resx">
-      <DependentUpon>Dialog_FlatApp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
@@ -241,9 +244,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ActionPanel.resx">
       <DependentUpon>ActionPanel.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrameProperties.resx">
-      <DependentUpon>FrameProperties.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

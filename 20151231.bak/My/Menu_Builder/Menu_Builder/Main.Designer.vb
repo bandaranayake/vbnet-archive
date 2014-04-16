@@ -132,7 +132,6 @@ Partial Class Main
         Me.ToolTextBoxX = New System.Windows.Forms.ToolStripTextBox()
         Me.ToolTextBoxY = New System.Windows.Forms.ToolStripTextBox()
         Me.ToolStripSeparator18 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolButtonEnd = New System.Windows.Forms.ToolStripButton()
         Me.ToolButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolLabel = New System.Windows.Forms.ToolStripButton()
         Me.ToolLinkLabel = New System.Windows.Forms.ToolStripButton()
@@ -152,7 +151,6 @@ Partial Class Main
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.StopTestingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.ToolStripSeparator19 = New System.Windows.Forms.ToolStripSeparator()
         Me.StatusBar.SuspendLayout()
         Me.MenuBar.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -736,7 +734,7 @@ Partial Class Main
         Me.ToolButtons.BackColor = System.Drawing.Color.FromArgb(CType(CType(188, Byte), Integer), CType(CType(199, Byte), Integer), CType(CType(216, Byte), Integer))
         Me.ToolButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ToolButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolButtonNew, Me.ToolButtonOpen, Me.ToolButtonSave, Me.ToolStripSeparator4, Me.ToolButtonCreateExe, Me.ToolStripSeparator5, Me.ToolButtonRemoveAll, Me.ToolButtonSelectAll, Me.ToolStripSeparator3, Me.ToolButtonCProperty, Me.ToolButtonFrmProperties, Me.ToolButtonAction, Me.ToolStripSeparator7, Me.ToolButtonExportp, Me.ToolStripSeparator12, Me.ToolButtonTest, Me.ToolStripSeparator13, Me.ToolButtonVertical, Me.ToolButtonHorizontal, Me.ToolStripSeparator14, Me.ToolButtonFront, Me.ToolButtonBack, Me.ToolStripSeparator15, Me.ToolButtonMail, Me.ToolButtonHelp, Me.ToolStripSeparator16, Me.ToolDropDownButtonGrid, Me.ToolButtonEnd, Me.ToolStripSeparator19})
+        Me.ToolButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolButtonNew, Me.ToolButtonOpen, Me.ToolButtonSave, Me.ToolStripSeparator4, Me.ToolButtonCreateExe, Me.ToolStripSeparator5, Me.ToolButtonRemoveAll, Me.ToolButtonSelectAll, Me.ToolStripSeparator3, Me.ToolButtonCProperty, Me.ToolButtonFrmProperties, Me.ToolButtonAction, Me.ToolStripSeparator7, Me.ToolButtonExportp, Me.ToolStripSeparator12, Me.ToolButtonTest, Me.ToolStripSeparator13, Me.ToolButtonVertical, Me.ToolButtonHorizontal, Me.ToolStripSeparator14, Me.ToolButtonFront, Me.ToolButtonBack, Me.ToolStripSeparator15, Me.ToolButtonMail, Me.ToolButtonHelp, Me.ToolStripSeparator16, Me.ToolDropDownButtonGrid})
         Me.ToolButtons.Location = New System.Drawing.Point(0, 24)
         Me.ToolButtons.Name = "ToolButtons"
         Me.ToolButtons.Size = New System.Drawing.Size(984, 24)
@@ -1007,20 +1005,6 @@ Partial Class Main
         Me.ToolStripSeparator18.Name = "ToolStripSeparator18"
         Me.ToolStripSeparator18.Size = New System.Drawing.Size(157, 6)
         '
-        'ToolButtonEnd
-        '
-        Me.ToolButtonEnd.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolButtonEnd.ForeColor = System.Drawing.Color.Maroon
-        Me.ToolButtonEnd.Image = CType(resources.GetObject("ToolButtonEnd.Image"), System.Drawing.Image)
-        Me.ToolButtonEnd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolButtonEnd.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolButtonEnd.Name = "ToolButtonEnd"
-        Me.ToolButtonEnd.Size = New System.Drawing.Size(47, 21)
-        Me.ToolButtonEnd.Text = "End"
-        Me.ToolButtonEnd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ToolButtonEnd.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.ToolButtonEnd.ToolTipText = "Error Fix"
-        '
         'ToolButton
         '
         Me.ToolButton.AutoSize = False
@@ -1200,12 +1184,6 @@ Partial Class Main
         Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
         Me.NotifyIcon1.Text = "Menu Builder"
         '
-        'ToolStripSeparator19
-        '
-        Me.ToolStripSeparator19.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.ToolStripSeparator19.Name = "ToolStripSeparator19"
-        Me.ToolStripSeparator19.Size = New System.Drawing.Size(6, 24)
-        '
         'Main
         '
         Me.AllowDrop = True
@@ -1370,7 +1348,5 @@ Partial Class Main
     Friend WithEvents ToolTextBoxX As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents ToolTextBoxY As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents ToolStripSeparator18 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolButtonEnd As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripSeparator19 As System.Windows.Forms.ToolStripSeparator
 
 End Class

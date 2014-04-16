@@ -25,10 +25,7 @@ Public Class Main
 
     Dim MultiAddCntrl, multiSelect, multiselectED As Boolean
 
-
     Dim p As Boolean
-
-#End Region
 
     Dim prShowed As Boolean = False
     Dim acShowed As Boolean = False
@@ -38,6 +35,11 @@ Public Class Main
     Dim testForm As New Form
 
     Dim tmpC1, tmpC2 As Color
+
+    Dim Offset As Point
+    Dim Testc As Control
+
+#End Region
 
     Private Sub NewToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewToolStripMenuItem.Click, ToolButtonNew.Click
 
@@ -88,11 +90,6 @@ Public Class Main
 en:
         lblStatus.Text = "New Project Created.."
     End Sub
-
-    Dim Offset As Point
-    Dim Testc As Control
-
-
 #Region "Handlers"
 
     Public Sub ControlRemove(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -2873,7 +2870,7 @@ en:
         End Try
     End Sub
 
-#Region "Test$"
+#Region "Test"
 
     Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
         Dim linesPerPage As Single = 0
@@ -2966,7 +2963,7 @@ en:
             Me.Hide()
             NotifyIcon1.Visible = True
 
-           NotifyIcon1.BalloonTipTitle = "Autorun Menu Builder Testing.."
+            NotifyIcon1.BalloonTipTitle = "Autorun Menu Builder Testing.."
             NotifyIcon1.BalloonTipText = "Click here to stop testing !"
             NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
             NotifyIcon1.ShowBalloonTip(10)
@@ -3522,15 +3519,4 @@ en:
         End If
     End Sub
 
-    Private Sub ToolStripButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolButtonEnd.Click
-        Dim rs As MsgBoxResult
-        rs = MsgBox("This should only be used if there is an error when closing Menu Builder." & vbCrLf & "By clicking OK button Menu Builder will be closed and it will not ask for Saving." & vbCrLf & vbCrLf & _
-                    "If you haven't saved the project, click Cancel button and save it.", MsgBoxStyle.OkCancel + MsgBoxStyle.Critical, "Exit..")
-        If rs = MsgBoxResult.Ok Then
-            End
-        End If
-    End Sub
-
 End Class
-
-'Add a cmd btn in cntxt mnu to show properties,send back,bring front
