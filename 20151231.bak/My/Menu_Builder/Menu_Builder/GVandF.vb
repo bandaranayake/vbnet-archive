@@ -2,7 +2,7 @@
 
 Module GVandF
     Public ProjectPath As String
-    Public BImageChanged As Boolean
+    Public BImageChanged, Trans As Boolean
     Public NewFrame As New Frame
     Public DropDownList As New ToolStripDropDown
 

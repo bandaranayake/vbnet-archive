@@ -80,7 +80,6 @@
                 If .ShowDialog() = DialogResult.OK Then
 
                     NewFrame.ActiveControl.Font = .Font
-                    txtFont.Font = .Font
                     txtFont.Text = .Font.Name
                 End If
             Catch ex As Exception

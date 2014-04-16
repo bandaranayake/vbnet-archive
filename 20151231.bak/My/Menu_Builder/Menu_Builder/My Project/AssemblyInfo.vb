@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Menu_Builder")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyDescription("Autoplay Menu Builder")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Menu_Builder")> 
 <Assembly: AssemblyCopyright("Copyright ©  2014")> 

@@ -51,6 +51,7 @@ Partial Class FrameProperties
         Me.chkAutoScroll = New System.Windows.Forms.CheckBox()
         Me.cmbxFormBStyle = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.chkTrans = New System.Windows.Forms.CheckBox()
         Me.cmbxWinState = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.btnTransKey = New System.Windows.Forms.Button()
@@ -132,6 +133,7 @@ Partial Class FrameProperties
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.chkTrans)
         Me.SplitContainer1.Panel2.Controls.Add(Me.cmbxWinState)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Label15)
         Me.SplitContainer1.Panel2.Controls.Add(Me.btnTransKey)
@@ -417,6 +419,16 @@ Partial Class FrameProperties
         Me.Label8.TabIndex = 24
         Me.Label8.Text = "Form Border Style :"
         '
+        'chkTrans
+        '
+        Me.chkTrans.AutoSize = True
+        Me.chkTrans.Location = New System.Drawing.Point(116, 597)
+        Me.chkTrans.Name = "chkTrans"
+        Me.chkTrans.Size = New System.Drawing.Size(59, 17)
+        Me.chkTrans.TabIndex = 78
+        Me.chkTrans.Text = "Enable"
+        Me.chkTrans.UseVisualStyleBackColor = True
+        '
         'cmbxWinState
         '
         Me.cmbxWinState.FormattingEnabled = True
@@ -437,10 +449,11 @@ Partial Class FrameProperties
         '
         'btnTransKey
         '
+        Me.btnTransKey.Enabled = False
         Me.btnTransKey.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTransKey.Location = New System.Drawing.Point(13, 595)
         Me.btnTransKey.Name = "btnTransKey"
-        Me.btnTransKey.Size = New System.Drawing.Size(163, 20)
+        Me.btnTransKey.Size = New System.Drawing.Size(96, 20)
         Me.btnTransKey.TabIndex = 79
         Me.btnTransKey.UseVisualStyleBackColor = True
         '
@@ -768,4 +781,5 @@ Partial Class FrameProperties
     Friend WithEvents cmbxWinState As System.Windows.Forms.ComboBox
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents chkMaxbx As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTrans As System.Windows.Forms.CheckBox
 End Class

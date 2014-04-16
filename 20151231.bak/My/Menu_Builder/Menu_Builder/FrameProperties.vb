@@ -238,4 +238,9 @@ Public Class FrameProperties
         NewFrame.TopMost = chkTopmost.Checked
     End Sub
 
+    Private Sub chkTrans_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTrans.CheckedChanged
+        btnTransKey.Enabled = chkTrans.Checked
+        Trans = chkTrans.Checked
+    End Sub
+
 End Class

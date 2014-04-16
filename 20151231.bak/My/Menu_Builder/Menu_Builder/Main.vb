@@ -39,7 +39,7 @@ Public Class Main
 
     Dim tmpC1, tmpC2 As Color
 
-    Private Sub NewToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewToolStripMenuItem.Click
+    Private Sub NewToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewToolStripMenuItem.Click, ToolButtonNew.Click
 
         If p = True Then
             NewFrame.Close()
@@ -80,7 +80,7 @@ Public Class Main
             AddHandler NewFrame.DragDrop, AddressOf D_DragDrop
             AddHandler NewFrame.DragEnter, AddressOf D_DragEnter
             AddHandler NewFrame.ControlRemoved, AddressOf F_ControlRemoved
-           
+
             NewFrame.Show()
 
             lblProjectPath.Text = ProjectPath
@@ -91,6 +91,7 @@ en:
 
     Dim Offset As Point
     Dim Testc As Control
+
 
 #Region "Handlers"
 
@@ -547,8 +548,8 @@ en:
         clean0()
         lblStatus.Text = "Add Text Box.."
         TextCanAdd = True
-        NewFrame.Cursor = New Cursor(My.Computer.FileSystem.CurrentDirectory + "\Cursor\llblCursor.cur")
-        Me.Cursor = New Cursor(My.Computer.FileSystem.CurrentDirectory + "\Cursor\llblCursor.cur")
+        NewFrame.Cursor = New Cursor(My.Computer.FileSystem.CurrentDirectory + "\Cursor\txtCursor.cur")
+        Me.Cursor = New Cursor(My.Computer.FileSystem.CurrentDirectory + "\Cursor\txtCursor.cur")
     End Sub
 
 #End Region
@@ -556,7 +557,7 @@ en:
 #Region "Arrange-Select"
 
     'Arrange V
-    Private Sub VerticallyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VerticallyToolStripMenuItem.Click
+    Private Sub VerticallyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VerticallyToolStripMenuItem.Click, ToolButtonHorizontal.Click
         For Each c In NewFrame.Controls
             If c.Tag = True Then
                 clean()
@@ -568,7 +569,7 @@ en:
     End Sub
 
     'Arrange H
-    Private Sub HorizontallyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HorizontallyToolStripMenuItem.Click
+    Private Sub HorizontallyToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HorizontallyToolStripMenuItem.Click, ToolButtonVertical.Click
         For Each c In NewFrame.Controls
             If c.tag = True Then
                 clean()
@@ -580,7 +581,7 @@ en:
     End Sub
 
     'Remove all controls
-    Private Sub RemoveAllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveAllToolStripMenuItem.Click
+    Private Sub RemoveAllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveAllToolStripMenuItem.Click, ToolButtonRemoveAll.Click
         If MsgBox("Remove all controls ?", MsgBoxStyle.OkCancel + MsgBoxStyle.Exclamation, "Confirm") = MsgBoxResult.Ok Then
             clean()
             clean0()
@@ -593,7 +594,7 @@ en:
     End Sub
 
     'Select all controls
-    Private Sub AllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AllToolStripMenuItem.Click
+    Private Sub AllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AllToolStripMenuItem.Click, ToolButtonSelectAll.Click
         clean()
         clean0()
         For Each c In NewFrame.Controls
@@ -686,6 +687,21 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
         Next
     End Sub
 
+    Private Sub TextBoxesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBoxesToolStripMenuItem.Click
+        clean()
+        clean0()
+        For Each c In NewFrame.Controls
+            If TypeOf c Is TextBox Then
+                Using redPen As New Pen(Color.BlueViolet, 1), _
+formGraphics As Graphics = NewFrame.CreateGraphics()
+                    formGraphics.DrawRectangle(redPen, New Rectangle(c.Location.X - 1, c.Location.Y - 1, c.Width + 1, c.Height + 1))
+                End Using
+                multiselectED = True
+                c.Tag = True
+            End If
+        Next
+    End Sub
+
     Private Sub UnselectAllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UnselectAllToolStripMenuItem.Click
         clean()
         clean0()
@@ -731,6 +747,10 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
             e.Cancel = True
         Else
             p = False
+            Try
+                sender.dispose()
+            Catch
+            End Try
         End If
     End Sub
 
@@ -1118,15 +1138,17 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
             pi.TabPage1.AutoScroll = True
 
         ElseIf TypeOf c Is Panel Then
-            Pan = New vPanel
-            Pan = NewFrame.ActiveControl
             TabPanel1.Controls.Clear()
 
             Dim rP As New Ppan
             rP.lblHead.Text = rP.lblHead.Text + " " + Pan.Text
             rP.Dock = DockStyle.Fill
+
+            Pan = New vPanel
+            Pan = NewFrame.ActiveControl
             rP.btnBackColor.BackColor = Pan.BackColor
 
+            rP.pnl = Pan
             If Pan.BackgroundImage IsNot Nothing Then
                 rP.txtBackgroundImage.Text = "(Image)"
             End If
@@ -1303,7 +1325,13 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
         binWriter.Write(NewFrame.Opacity)
         binWriter.Write(NewFrame.BackColor.ToArgb)
         binWriter.Write(NewFrame.ForeColor.ToArgb)
-        binWriter.Write(NewFrame.TransparencyKey.ToArgb)
+
+        If Trans = True Then
+            binWriter.Write(True)
+            binWriter.Write(NewFrame.TransparencyKey.ToArgb)
+        Else
+            binWriter.Write(False)
+        End If
 
         binWriter.Write(NewFrame.Text)
         binWriter.Write(NewFrame.Width)
@@ -1336,7 +1364,7 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
         If BImageChanged = True Then
             Try
                 tmpString = GetRandomName()
-                NewFrame.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                NewFrame.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Png)
                 binWriter.Write(True)
                 binWriter.Write(tmpString)
             Catch ex As Exception
@@ -1445,84 +1473,84 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
                 binWriter.Write(btn.st(1))
 
 
-            If btn.b1 = True Then
-                Try
-                    tmpString = GetRandomName()
-                    File.Copy(btn.CursorFile, ProjectPath + "\" + tmpString)
-                    binWriter.Write(True)
-                    binWriter.Write(tmpString)
-                Catch ex As Exception
+                If btn.b1 = True Then
+                    Try
+                        tmpString = GetRandomName()
+                        File.Copy(btn.CursorFile, ProjectPath + "\" + tmpString)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                        binWriter.Write(1)
+                    End Try
+                Else
                     binWriter.Write(False)
-                    binWriter.Write(1)
-                End Try
-            Else
-                binWriter.Write(False)
-                binWriter.Write(GetCursor(btn.Cursor))
-            End If
+                    binWriter.Write(GetCursor(btn.Cursor))
+                End If
 
-            If Not btn.BackgroundImage Is Nothing Then
-                Try
-                    tmpString = GetRandomName()
-                    btn.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-                    binWriter.Write(True)
-                    binWriter.Write(tmpString)
-                Catch ex As Exception
+                If Not btn.BackgroundImage Is Nothing Then
+                    Try
+                        tmpString = GetRandomName()
+                        btn.BackgroundImage.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                    End Try
+                Else
                     binWriter.Write(False)
-                End Try
-            Else
-                binWriter.Write(False)
-            End If
+                End If
 
-            If Not btn.Image Is Nothing Then
-                Try
-                    tmpString = GetRandomName()
-                    btn.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
-                    binWriter.Write(True)
-                    binWriter.Write(tmpString)
-                Catch ex As Exception
+                If Not btn.Image Is Nothing Then
+                    Try
+                        tmpString = GetRandomName()
+                        btn.Image.Save(ProjectPath + "\" + tmpString, ImageFormat.Jpeg)
+                        binWriter.Write(True)
+                        binWriter.Write(tmpString)
+                    Catch ex As Exception
+                        binWriter.Write(False)
+                    End Try
+                Else
                     binWriter.Write(False)
-                End Try
-            Else
-                binWriter.Write(False)
-            End If
+                End If
 
             ElseIf TypeOf c Is vLinkLabel Then
-            lblL = c
-            binWriter.Write(1)
+                lblL = c
+                binWriter.Write(1)
 
-            binWriter.Write(lblL.Text)
-            binWriter.Write(lblL.ImageAlign)
-            binWriter.Write(lblL.Name)
-            binWriter.Write(lblL.TextAlign)
-            binWriter.Write(lblL.ForeColor.ToArgb)
-            binWriter.Write(lblL.BackColor.ToArgb)
-            binWriter.Write(lblL.ActiveLinkColor.ToArgb)
-            binWriter.Write(lblL.VisitedLinkColor.ToArgb)
-            binWriter.Write(lblL.LinkColor.ToArgb)
-            binWriter.Write(lblL.DisabledLinkColor.ToArgb)
-            binWriter.Write(lblL.LinkBehavior)
-            binWriter.Write(lblL.LinkVisited)
-            binWriter.Write(lblL.Font.Name)
-            binWriter.Write(lblL.Font.Size)
-            binWriter.Write(lblL.Font.Style)
-            binWriter.Write(lblL.Font.Unit)
-            binWriter.Write(lblL.UseMnemonic)
-            binWriter.Write(lblL.UseWaitCursor)
-            binWriter.Write(lblL.AutoSize)
-            binWriter.Write(lblL.TabStop)
-            binWriter.Write(lblL.TabIndex)
-            binWriter.Write(lblL.Location.X)
-            binWriter.Write(lblL.Location.Y)
-            binWriter.Write(lblL.Width)
-            binWriter.Write(lblL.Height)
-            binWriter.Write(lblL.MaximumSize.Width)
-            binWriter.Write(lblL.MaximumSize.Height)
-            binWriter.Write(lblL.MinimumSize.Width)
-            binWriter.Write(lblL.MinimumSize.Height)
-            binWriter.Write(lblL.LinkArea.Start)
-            binWriter.Write(lblL.LinkArea.Length)
-            binWriter.Write(lblL.Dock)
-            binWriter.Write(lblL.RightToLeft)
+                binWriter.Write(lblL.Text)
+                binWriter.Write(lblL.ImageAlign)
+                binWriter.Write(lblL.Name)
+                binWriter.Write(lblL.TextAlign)
+                binWriter.Write(lblL.ForeColor.ToArgb)
+                binWriter.Write(lblL.BackColor.ToArgb)
+                binWriter.Write(lblL.ActiveLinkColor.ToArgb)
+                binWriter.Write(lblL.VisitedLinkColor.ToArgb)
+                binWriter.Write(lblL.LinkColor.ToArgb)
+                binWriter.Write(lblL.DisabledLinkColor.ToArgb)
+                binWriter.Write(lblL.LinkBehavior)
+                binWriter.Write(lblL.LinkVisited)
+                binWriter.Write(lblL.Font.Name)
+                binWriter.Write(lblL.Font.Size)
+                binWriter.Write(lblL.Font.Style)
+                binWriter.Write(lblL.Font.Unit)
+                binWriter.Write(lblL.UseMnemonic)
+                binWriter.Write(lblL.UseWaitCursor)
+                binWriter.Write(lblL.AutoSize)
+                binWriter.Write(lblL.TabStop)
+                binWriter.Write(lblL.TabIndex)
+                binWriter.Write(lblL.Location.X)
+                binWriter.Write(lblL.Location.Y)
+                binWriter.Write(lblL.Width)
+                binWriter.Write(lblL.Height)
+                binWriter.Write(lblL.MaximumSize.Width)
+                binWriter.Write(lblL.MaximumSize.Height)
+                binWriter.Write(lblL.MinimumSize.Width)
+                binWriter.Write(lblL.MinimumSize.Height)
+                binWriter.Write(lblL.LinkArea.Start)
+                binWriter.Write(lblL.LinkArea.Length)
+                binWriter.Write(lblL.Dock)
+                binWriter.Write(lblL.RightToLeft)
 
                 binWriter.Write(lblL.int(0))
                 binWriter.Write(lblL.int(1))
@@ -1853,7 +1881,7 @@ formGraphics As Graphics = NewFrame.CreateGraphics()
             End If
         Next
 en:
-            binWriter.Dispose()
+        binWriter.Dispose()
 
     End Sub
 
@@ -2402,7 +2430,7 @@ en:
         End Try
     End Sub
 
-    Private Sub ExportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportToolStripMenuItem.Click
+    Private Sub ExportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportToolStripMenuItem.Click, ToolButtonExportp.Click
         clean()
         clean0()
 
@@ -2418,9 +2446,34 @@ en:
 
         memoryImage = New Bitmap(s.Width, s.Height, myGraphics)
         Dim memoryGraphics As Graphics = Graphics.FromImage(memoryImage)
-        memoryGraphics.CopyFromScreen(PointToScreen(NewFrame.DesktopLocation).X + 25, PointToScreen(NewFrame.DesktopLocation).Y + 85, 0, 0, s)
+        memoryGraphics.CopyFromScreen(PointToScreen(NewFrame.DesktopLocation).X + 26, PointToScreen(NewFrame.DesktopLocation).Y + 79, 0, 0, s)
 
-        memoryImage.Save(ProjectPath + "\" + nm + ".bmp", ImageFormat.Bmp)
+        Dim imgfrmt As ImageFormat = ImageFormat.Bmp
+
+        Dim imgfrmtDialog As New ImgFormat
+        If imgfrmtDialog.ShowDialog = DialogResult.OK Then
+            If imgfrmtDialog.RadioButton1.Checked = True Then
+                imgfrmt = ImageFormat.Bmp
+            ElseIf imgfrmtDialog.RadioButton2.Checked = True Then
+                imgfrmt = ImageFormat.Emf
+            ElseIf imgfrmtDialog.RadioButton3.Checked = True Then
+                imgfrmt = ImageFormat.Exif
+            ElseIf imgfrmtDialog.RadioButton4.Checked = True Then
+                imgfrmt = ImageFormat.Gif
+            ElseIf imgfrmtDialog.RadioButton5.Checked = True Then
+                imgfrmt = ImageFormat.Icon
+            ElseIf imgfrmtDialog.RadioButton6.Checked = True Then
+                imgfrmt = ImageFormat.Jpeg
+            ElseIf imgfrmtDialog.RadioButton7.Checked = True Then
+                imgfrmt = ImageFormat.Png
+            ElseIf imgfrmtDialog.RadioButton8.Checked = True Then
+                imgfrmt = ImageFormat.Tiff
+            ElseIf imgfrmtDialog.RadioButton9.Checked = True Then
+                imgfrmt = ImageFormat.Wmf
+            End If
+        End If
+
+        memoryImage.Save(ProjectPath + "\" + nm + "." + imgfrmt.ToString, imgfrmt)
         lblStatus.Text = "Preview Saved"
     End Sub
 
@@ -2446,7 +2499,7 @@ en:
         End Try
     End Sub
 
-    Private Sub btnTabP_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTabP.Click, PropertiesToolStripMenuItem.Click
+    Private Sub btnTabP_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTabP.Click, PropertiesToolStripMenuItem.Click, ToolButtonCProperty.Click
         If acShowed = True Then
             btnTabP.ForeColor = Color.White
             btnTabA.ForeColor = Color.Black
@@ -2480,7 +2533,7 @@ en:
         End If
     End Sub
 
-    Private Sub btnTabA_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTabA.Click, ActionsToolStripMenuItem.Click
+    Private Sub btnTabA_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTabA.Click, ActionsToolStripMenuItem.Click, ToolButtonAction.Click
         If prShowed = True Then
             btnTabP.ForeColor = Color.Black
             btnTabA.ForeColor = Color.White
@@ -2514,7 +2567,7 @@ en:
         End If
     End Sub
 
-    Private Sub FormPropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FormPropertiesToolStripMenuItem.Click
+    Private Sub FormPropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FormPropertiesToolStripMenuItem.Click, ToolButtonFrmProperties.Click
         clean()
         clean0()
         lblStatus.Text = "Frame Properties.."
@@ -2551,7 +2604,15 @@ en:
 
         FrameProperties.btnBackColor.BackColor = NewFrame.BackColor
         FrameProperties.btnForeColor.BackColor = NewFrame.ForeColor
-        FrameProperties.btnTransKey.BackColor = NewFrame.TransparencyKey
+
+        If Trans = True Then
+            FrameProperties.btnTransKey.BackColor = NewFrame.TransparencyKey
+            FrameProperties.btnTransKey.Enabled = True
+            FrameProperties.chkTrans.Checked = True
+        Else
+            FrameProperties.btnTransKey.Enabled = False
+            FrameProperties.chkTrans.Checked = False
+        End If
 
         FrameProperties.txtText.Text = NewFrame.Text
         FrameProperties.txtSizeW.Text = NewFrame.Width
@@ -2581,14 +2642,14 @@ en:
         End If
     End Sub
 
-    Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click
+    Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click, ToolButtonSave.Click, ToolButtonCreateExe.Click
         If p = True Then
             lblStatus.Text = "Saving.."
             Save()
         End If
     End Sub
 
-    Private Sub OpenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripMenuItem.Click
+    Private Sub OpenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripMenuItem.Click, ToolButtonOpen.Click
         If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
             DrpDwnControls.DropDownItems.Clear()
 
@@ -2646,7 +2707,13 @@ en:
             NewFrame.Opacity = binReader.ReadDouble
             NewFrame.BackColor = Color.FromArgb(binReader.ReadInt32)
             NewFrame.ForeColor = Color.FromArgb(binReader.ReadInt32)
-            NewFrame.TransparencyKey = Color.FromArgb(binReader.ReadInt32)
+
+            If binReader.ReadBoolean = True Then
+                NewFrame.TransparencyKey = Color.FromArgb(binReader.ReadInt32)
+                Trans = True
+            Else
+                Trans = False
+            End If
 
             NewFrame.Text = binReader.ReadString
             NewFrame.Width = binReader.ReadInt32
@@ -2660,6 +2727,7 @@ en:
                 Try
                     NewFrame.CursorFile = ProjectPath + "\" + binReader.ReadString
                     NewFrame.Cursor = New Cursor(NewFrame.CursorFile)
+
                 Catch ex As Exception
                     MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
                     NewFrame.Cursor = Cursors.Arrow
@@ -2671,6 +2739,7 @@ en:
             If binReader.ReadBoolean = True Then
                 Try
                     NewFrame.BackgroundImage = Image.FromFile(ProjectPath + binReader.ReadString)
+                    BImageChanged = True
                 Catch ex As Exception
                     MsgBox(ex.Message, MsgBoxStyle.Critical, "Error !")
                     NewFrame.BackgroundImage = flag
@@ -2790,22 +2859,18 @@ en:
         lblStatus.Text = sender.Text
     End Sub
 
-    Private Sub BringToFrontToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BringToFrontToolStripMenuItem.Click
+    Private Sub BringToFrontToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BringToFrontToolStripMenuItem.Click, ToolButtonFront.Click
         Try
             NewFrame.ActiveControl.BringToFront()
         Catch
         End Try
     End Sub
 
-    Private Sub SendToBackToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SendToBackToolStripMenuItem.Click
+    Private Sub SendToBackToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SendToBackToolStripMenuItem.Click, ToolButtonBack.Click
         Try
             NewFrame.ActiveControl.SendToBack()
         Catch
         End Try
-    End Sub
-
-    Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
-        Dispose()
     End Sub
 
 #Region "Test$"
@@ -2846,7 +2911,7 @@ en:
         Timer1.Enabled = False
     End Sub
 
-    Private Sub TestNowToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TestNowToolStripMenuItem.Click
+    Private Sub TestNowToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TestNowToolStripMenuItem.Click, ToolButtonTest.Click
         If p = True Then
             clean()
             clean0()
@@ -2899,6 +2964,12 @@ en:
             AddHandler testForm.FormClosing, AddressOf TestFrameClosing
 
             Me.Hide()
+            NotifyIcon1.Visible = True
+
+           NotifyIcon1.BalloonTipTitle = "Autorun Menu Builder Testing.."
+            NotifyIcon1.BalloonTipText = "Click here to stop testing !"
+            NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
+            NotifyIcon1.ShowBalloonTip(10)
             testForm.ShowDialog()
         End If
     End Sub
@@ -2956,6 +3027,11 @@ en:
             AddHandler vBtn.Click, AddressOf TestOnClick
             AddHandler vBtn.MouseHover, AddressOf TestOnMouseHover
 
+            If vBtn.bn(3) = True Then
+                AddHandler vBtn.MouseDown, AddressOf TestMouseDown
+                AddHandler vBtn.MouseMove, AddressOf TestMouseMove
+            End If
+
             Contain.Controls.Add(vBtn)
         ElseIf TypeOf c Is vLinkLabel Then
             Dim vLbll As New vLinkLabel
@@ -3006,7 +3082,10 @@ en:
 
             AddHandler vLbll.Click, AddressOf TestOnClick
             AddHandler vLbll.MouseHover, AddressOf TestOnMouseHover
-
+            If vLbll.bn(3) = True Then
+                AddHandler vLbll.MouseDown, AddressOf TestMouseDown
+                AddHandler vLbll.MouseMove, AddressOf TestMouseMove
+            End If
             Contain.Controls.Add(vLbll)
         ElseIf TypeOf c Is vLabel Then
             Dim vLbl As New vLabel
@@ -3052,7 +3131,10 @@ en:
 
             AddHandler vLbl.Click, AddressOf TestOnClick
             AddHandler vLbl.MouseHover, AddressOf TestOnMouseHover
-
+            If vLbl.bn(3) = True Then
+                AddHandler vLbl.MouseDown, AddressOf TestMouseDown
+                AddHandler vLbl.MouseMove, AddressOf TestMouseMove
+            End If
             Contain.Controls.Add(vLbl)
         ElseIf TypeOf c Is PictureBox Then
             Dim vImg As New vImage
@@ -3092,7 +3174,10 @@ en:
 
             AddHandler vImg.Click, AddressOf TestOnClick
             AddHandler vImg.MouseHover, AddressOf TestOnMouseHover
-
+            If vImg.bn(3) = True Then
+                AddHandler vImg.MouseDown, AddressOf TestMouseDown
+                AddHandler vImg.MouseMove, AddressOf TestMouseMove
+            End If
             Contain.Controls.Add(vImg)
         ElseIf TypeOf c Is Panel Then
             Dim vPan As New vPanel
@@ -3175,13 +3260,16 @@ en:
     Private Sub TestFrameESC(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Escape Then
             sender.Close()
+            Me.Show()
             Me.WindowState = FormWindowState.Maximized
+            NotifyIcon1.Visible = False
             lblStatus.Text = "Testing Completed"
         End If
     End Sub
 
     Private Sub TestFrameClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs)
         lblStatus.Text = "Testing Completed"
+        NotifyIcon1.Visible = False
         Me.Show()
     End Sub
 
@@ -3362,11 +3450,84 @@ en:
         End If
     End Sub
 
+    Private Sub StopTestingToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles StopTestingToolStripMenuItem.Click
+        testForm.Close()
+    End Sub
+
 #End Region
 
     Private Sub lblProjectPath_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblProjectPath.MouseDown
         If p = True Then
             Process.Start(sender.Text)
+        End If
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+
+    Private Sub X4ToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles X8ToolStripMenuItem.Click, X4ToolStripMenuItem.Click, X32ToolStripMenuItem.Click, X24ToolStripMenuItem.Click, X12ToolStripMenuItem.Click
+        If sender.Name.StartsWith("X4") Then
+            FormDotXY = 4
+            ToolTextBoxX.Text = FormDotXY
+            ToolTextBoxY.Text = FormDotXY
+        ElseIf sender.Name.StartsWith("X8") Then
+            FormDotXY = 8
+            ToolTextBoxX.Text = FormDotXY
+            ToolTextBoxY.Text = FormDotXY
+        ElseIf sender.Name.StartsWith("X12") Then
+            FormDotXY = 12
+            ToolTextBoxX.Text = FormDotXY
+            ToolTextBoxY.Text = FormDotXY
+        ElseIf sender.Name.StartsWith("X24") Then
+            FormDotXY = 24
+            ToolTextBoxX.Text = FormDotXY
+            ToolTextBoxY.Text = FormDotXY
+        ElseIf sender.Name.StartsWith("X32") Then
+            FormDotXY = 32
+            ToolTextBoxX.Text = FormDotXY
+            ToolTextBoxY.Text = FormDotXY
+        End If
+
+        If p = True And BImageChanged = False Then
+            Dim flag As Bitmap
+
+            flag = New Bitmap(Convert.ToInt16(ToolTextBoxX.Text), Convert.ToInt16(ToolTextBoxY.Text))
+            flag.SetPixel(0, 0, Color.Black)
+
+            NewFrame.BackgroundImage = flag
+            NewFrame.BackgroundImageLayout = ImageLayout.Tile
+        End If
+    End Sub
+
+    Private Sub ToolDropDownButtonGrid_DropDownOpening(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolDropDownButtonGrid.DropDownOpening
+        If p = True Then
+            ToolTextBoxX.Text = NewFrame.BackgroundImage.Width
+            ToolTextBoxY.Text = NewFrame.BackgroundImage.Height
+        End If
+    End Sub
+
+    Private Sub ToolTextBoxX_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolTextBoxY.TextChanged, ToolTextBoxX.TextChanged
+        If p = True And BImageChanged = False Then
+            Try
+                Dim flag As Bitmap
+
+                flag = New Bitmap(Convert.ToInt16(ToolTextBoxX.Text), Convert.ToInt16(ToolTextBoxY.Text))
+                flag.SetPixel(0, 0, Color.Black)
+
+                NewFrame.BackgroundImage = flag
+                NewFrame.BackgroundImageLayout = ImageLayout.Tile
+            Catch
+            End Try
+        End If
+    End Sub
+
+    Private Sub ToolStripButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolButtonEnd.Click
+        Dim rs As MsgBoxResult
+        rs = MsgBox("This should only be used if there is an error when closing Menu Builder." & vbCrLf & "By clicking OK button Menu Builder will be closed and it will not ask for Saving." & vbCrLf & vbCrLf & _
+                    "If you haven't saved the project, click Cancel button and save it.", MsgBoxStyle.OkCancel + MsgBoxStyle.Critical, "Exit..")
+        If rs = MsgBoxResult.Ok Then
+            End
         End If
     End Sub
 

@@ -62,10 +62,8 @@ Public Class Ptxt
             .ShowColor = False
             Try
                 If .ShowDialog() = DialogResult.OK Then
-
-                    txt.Font = .Font
-                    txtFont.Font = .Font
                     txtFont.Text = .Font.Name
+                    txt.Font = .Font
                 End If
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
